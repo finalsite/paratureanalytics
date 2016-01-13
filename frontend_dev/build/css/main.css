@@ -13,3 +13,32 @@ h3 {
 p {
   font-family: 'Lato', sans-serif;
 }
+
+
+/* -------------------------------- *\
+    #TABLE
+\* -------------------------------- */
+
+table {
+  margin: 0 auto;
+}
+
+table, th, td {
+  border: 1px solid #eaeaea;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  background: #fafafa;
+}
+
+tr:nth-child(odd) {
+  background: #eaeaea;
+}
+
+td {
+  padding: 5px 10px;
+}

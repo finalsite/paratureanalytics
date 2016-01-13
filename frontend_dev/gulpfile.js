@@ -58,6 +58,7 @@ gulp.task('production-push', function() {
     .pipe(gulp.dest('../paratureanalyticsdashboard/static/css/'));
 
   var jsFiles = [
+    './build/js/jquery.min.js',
     './build/js/main.js'
   ];
 
