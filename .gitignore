@@ -9,7 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
+./build/
 develop-eggs/
 dist/
 downloads/
@@ -63,3 +63,6 @@ venv/
 
 # Config files
 config.py
+
+# NPM Modules
+node_modules

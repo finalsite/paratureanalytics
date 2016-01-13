@@ -1,0 +1,30 @@
+/* -------------------------------- *\
+    #UTILS
+\* -------------------------------- */
+
+.text--left {
+  text-align: left;
+}
+
+.text--right {
+  text-align: right;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--upper {
+	text-transform: uppercase;
+}
+
+.text--lower {
+	text-transform: lowercase;
+}
+
+.clearfix:before,
+.clearfix:after {
+  clear: both;
+  content: " ";
+  display: table;
+}

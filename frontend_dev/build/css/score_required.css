@@ -1,0 +1,9 @@
+/* -------------------------------- *\
+    #REQUIRED
+\* -------------------------------- */
+
+* {
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
