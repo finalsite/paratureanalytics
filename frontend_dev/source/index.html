@@ -42,11 +42,29 @@
 
   <div class="grid">
     <div class="grid__row">
-      <div class="grid__col-2"></div>
-      <div class="grid__col-9">
-        <h3>Results:</h3>
+      <div class="grid__col-1"></div>
+      <div class="grid__col-10">
+        <form>
+          <label for="type">Type:</label>
+          <select name="type" id="type">
+            <option value="1">1 Star Ticket Rating</option>
+            <option value="2">2 Star Ticket Rating</option>
+            <option value="3">3 Star Ticket Rating</option>
+            <option value="4">4 Star Ticket Rating</option>
+          </select>
+          <label for="group">Group by:</label>
+          <select name="group" id="group">
+            <option value="1">Year</option>
+            <option value="2">Month</option>
+            <option value="3">Day</option>
+          </select>
+          <label for="datemin">Date from:</label>
+          <input type="date" id="datemin">
+          <label for="datemax">Date to:</label>
+          <input type="date" id="datemax">
+        </form>
       </div>
-      <div class="grid__col-2"></div>
+      <div class="grid__col-1"></div>
     </div>
 
     <div class="grid__row">
