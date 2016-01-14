@@ -15,6 +15,9 @@ p {
 }
 
 
+
+
+
 /* -------------------------------- *\
     #TABLE
 \* -------------------------------- */
@@ -41,4 +44,35 @@ tr:nth-child(odd) {
 
 td {
   padding: 5px 10px;
+}
+
+
+
+
+
+/* -------------------------------- *\
+    #FORMS
+\* -------------------------------- */
+
+.form {
+  margin: 10px 5px;
+}
+
+
+.form_section {
+  display: block;
+}
+
+.form__section.form__section--two-col {
+  display: inline-block;
+  width: 49%;
+}
+
+.form__label {
+  display: inline-block;
+  min-width: 100px;
+}
+
+.form__select {
+  min-width: 165px;
 }
