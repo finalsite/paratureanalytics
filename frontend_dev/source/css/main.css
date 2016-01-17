@@ -102,6 +102,7 @@ td {
 \* -------------------------------- */
 .results__nav {
   position: relative;
+  height: 35px;
 }
 .results__export {
   cursor: pointer;
@@ -109,6 +110,7 @@ td {
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 100;
 }
 
 .results__export > * {
@@ -132,15 +134,16 @@ td {
 
 .tabs {
   position: relative;
+  margin-top: -35px;
   min-height: 400px;
   width: 100%;
 }
 
 .tab__panel {
+  min-height: 400px;
   position: absolute;
   top: 0;
   width: 100%;
-  min-height: 400px;
 }
 
 .tab__link {
@@ -188,7 +191,7 @@ td {
 }
 
 .tab__panel--active .tab__link {
-  background: #f00;
+  background: #fff;
 }
 
 .tab__panel--active .tab__content {
