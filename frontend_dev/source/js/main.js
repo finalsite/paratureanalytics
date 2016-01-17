@@ -89,5 +89,14 @@ $(function() {
       dataType: 'json',
       success: load
     });
-  })
+  });
+
+  // Tab Element
+  $('.tabs').on('click', '.tab__link', function() {
+    // Select all active class elements and remove them
+    $('.tab__panel--active').removeClass('tab__panel--active');
+
+    // Apply active class to this element
+    $(this).parent('.tab__panel').addClass('tab__panel--active');
+  });
 });
