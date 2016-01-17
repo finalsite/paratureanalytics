@@ -31,7 +31,7 @@ table {
 }
 
 table, th, td {
-  border: 1px solid #eaeaea;
+  border: 1px solid #dfdfdf;
 }
 
 tr {
@@ -40,10 +40,6 @@ tr {
 
 tr:hover {
   background: #fafafa;
-}
-
-tr:nth-child(odd) {
-  background: #eaeaea;
 }
 
 td {
@@ -97,9 +93,12 @@ td {
 
 
 
+
+
 /* -------------------------------- *\
     #TOOLBAR
 \* -------------------------------- */
+
 .results__nav {
   position: relative;
   height: 35px;
@@ -128,6 +127,10 @@ td {
   margin: 0;
 }
 
+
+
+
+
 /* -------------------------------- *\
     #TABBED ELEMENT
 \* -------------------------------- */
@@ -142,7 +145,7 @@ td {
 .tab__panel {
   min-height: 400px;
   position: absolute;
-  top: 0;
+  top: 40px;
   width: 100%;
 }
 
@@ -152,7 +155,8 @@ td {
   cursor: pointer;
   display: inline-block;
   padding: 5px;
-  position: relative;
+  position: absolute;;
+  top: -40px;
   width: 120px;
 }
 
@@ -190,6 +194,9 @@ td {
   z-index: 4;
 }
 
+.tab__panel--active {
+    z-index: 16;
+}
 .tab__panel--active .tab__link {
   background: #fff;
 }
