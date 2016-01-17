@@ -48,6 +48,9 @@ td {
   width: 200px;
 }
 
+td {
+  font-size: 14px;
+}
 
 
 
@@ -57,7 +60,7 @@ td {
 \* -------------------------------- */
 
 .form {
-  margin: 10px 5px;
+  margin: 10px 0;
 
 }
 
@@ -65,8 +68,8 @@ td {
   vertical-align: top;
 }
 
-.form__row--additional {
-  padding-top: 20px;
+.form__row {
+  padding-bottom: 10px;
 }
 
 .form_section {
@@ -84,16 +87,61 @@ td {
   width: 32%;
 }
 
+.form__section.form__section--four-col {
+  display: inline-block;
+  width: 25%;
+}
+
+.form__section.form__section--four-col:last-child {
+  float: right;
+  width: 23%;
+}
 .form__label {
   display: inline-block;
   min-width: 100px;
+  width: 100%;
 }
 
-.form__select {
-  min-width: 165px;
+.input,
+.select {
+  background: transparent;
+  border: 1px solid #d5d5d5;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 0;
+  height: 34px;
+  width: 100%;
+  -webkit-appearance: none;
 }
 
+.select {
+  background: url('../images/circle-down.png') no-repeat calc(100% - 3px) transparent;
+  background-size: 18px 18px;
+  padding-right: 24px;
+}
+.form__input {
+  width: 100%;
+}
 
+.button {
+  background-color: #eee;
+  background-image: linear-gradient(#fcfcfc, #eee);
+  border: 1px solid #d5d5d5;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 0;
+  padding: 5px 15px;
+  transition: .25s;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background-color: #ddd;
+  background-image: linear-gradient(#eee, #ddd);
+  border-color: #ccc;
+}
 
 
 
@@ -103,13 +151,14 @@ td {
 
 .results__nav {
   position: relative;
-  height: 35px;
+  height: 37px;
 }
 .results__export {
   cursor: pointer;
+  margin-top: 2px;
   padding: 5px;
   position: absolute;
-  right: 0;
+  right: 4px;
   top: 0;
   z-index: 100;
 }
