@@ -178,6 +178,7 @@ td {
 .export__name {
   display: inline-block;
   font-size: 16px;
+  font-weight: normal;
   margin: 0;
 }
 
@@ -208,8 +209,10 @@ td {
   border-top-right-radius: 3px;
   cursor: pointer;
   display: inline-block;
+  height: 35px;
   padding: 5px;
   position: absolute;;
+  text-align: center;
   top: -40px;
   width: 120px;
 }
@@ -219,14 +222,14 @@ td {
 }
 
 .tab__icon {
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 
 .tab__name {
   display: inline-block;
-  font-size: 20px;
-  margin: 0;
+  font-size: 16px;
+  margin: 3px 3px 0;
 }
 
 .tab__content {
@@ -254,6 +257,10 @@ td {
 
 .tab__panel--active .tab__link {
   background: #fff;
+  border-top: 3px solid #4078c0;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+  padding-top: 2px;
 }
 
 .tab__panel--active .tab__content {
