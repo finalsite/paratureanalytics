@@ -10,13 +10,14 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-
 .grid__row--alt {
   background: #fafafa;
 }
+
 .grid__row--distinct {
   border-bottom: 1px solid #eaeaea;
 }
+
 
 
 
@@ -153,6 +154,12 @@ td {
 .tab__icon {
   height: 25px;
   width: 25px;
+}
+
+.tab__icon--table {
+  margin-top: 2px;
+  height: 23px;
+  width: 22px;
 }
 
 .tab__name {

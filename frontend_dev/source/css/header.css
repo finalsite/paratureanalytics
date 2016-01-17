@@ -19,16 +19,26 @@
     #LOGO
 \* -------------------------------- */
 
-.logo {
+.logo,
+.logo__title,
+.logo__image {
   display: inline-block;
+}
+
+.logo {
+	padding: 10px 0;
+}
+.logo > *{
+	vertical-align: top;
 }
 
 .logo__title {
 	color: #333;
 	font-size: 24px;
-	margin: 15px 0;
+	margin: 5px 5px;
 }
 
 .logo__image {
-
+	height: 35px;
+	width: 35px;
 }
