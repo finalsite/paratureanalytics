@@ -39,8 +39,11 @@ function load(response) {
   var queryType = response['type'];
   var headers = HEADERTEMPLATES[queryType];
 
-  $('.placeholder__data').hide()
-  $('#total').empty().append('<h4>Total: ' + response['total'] + '<h4>');
+  $dataPlaceholderContent = $('.placeholder__data .placeholder__content');
+  $dataPlaceholderContent.removeClass('placeholder__content--empty');
+  $dataPlaceholderContent.children('h3').remove();
+
+  $('#total').empty().append('<p>Total: ' + response['total'] + '<p>');
   $('#headers').empty().append(headers);
   $('#results').empty().append(htmlTemplate);
 }

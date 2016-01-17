@@ -10,6 +10,9 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+p {
+  margin: 0 0 10px;
+}
 .grid__row--alt {
   background: #fafafa;
 }
@@ -27,15 +30,20 @@ body {
 \* -------------------------------- */
 
 table {
+  background: #fff;
   margin: 0 auto;
 }
 
-table, th, td {
+th, td {
   border: 1px solid #dfdfdf;
 }
 
+th {
+  border-bottom: none;
+}
+
 tr {
-  cursor: pointer;
+
 }
 
 tr:hover {
@@ -45,14 +53,18 @@ tr:hover {
 th,
 td {
   padding: 5px 10px;
-  width: 200px;
+  width: 180px;
 }
 
 td {
   font-size: 14px;
+  white-space: normal;
+  text-overflow: hidden;
 }
 
-
+#headers tr:hover {
+  background: initial;
+}
 
 
 /* -------------------------------- *\
@@ -289,7 +301,6 @@ td {
 .placeholder {
     position: relative;
     padding: 30px;
-    text-align: center;
     background-color: #fafafa;
     border: 1px solid #e5e5e5;
     border-radius: 3px;
@@ -297,11 +308,12 @@ td {
 }
 
 .placeholder__content {
-  margin: 0 auto;
-  padding: 75px 0;
-  width: 200px;
+
 }
 
-.placeholder__data {
-
+.placeholder__content--empty {
+  margin: 0 auto;
+  padding: 75px 0;
+  text-align: center;
+  width: 200px;
 }
