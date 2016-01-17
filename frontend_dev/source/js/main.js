@@ -23,7 +23,7 @@ function loadActionTypeList() {
     success: function(response) {
       var results = response.results;
 
-      var htmlTemplate = '';
+      var htmlTemplate = '<option value="all">All</option>';
       for (var i = 0; i < results.length; i++) {
         htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
       }
