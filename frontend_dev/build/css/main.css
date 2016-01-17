@@ -14,6 +14,9 @@ p {
   font-family: 'Lato', sans-serif;
 }
 
+.grid__row--distinct {
+  border-bottom: 1px solid #eaeaea;
+}
 
 
 
@@ -56,16 +59,30 @@ td {
 
 .form {
   margin: 10px 5px;
+
 }
 
+.form__row > * {
+  vertical-align: top;
+}
+
+.form__row--additional {
+  padding-top: 20px;
+}
 
 .form_section {
   display: block;
+
 }
 
 .form__section.form__section--two-col {
   display: inline-block;
   width: 49%;
+}
+
+.form__section.form__section--three-col {
+  display: inline-block;
+  width: 32%;
 }
 
 .form__label {
