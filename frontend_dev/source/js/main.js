@@ -1,3 +1,8 @@
+var HEADERTEMPLATES = {
+  'standard': '<tr><th>Date</th><th>Ticket</th><th>CSR</th><th>Action</th></tr>',
+  'aggregate': '<tr><th>Date</th><th>Total</th></tr>'
+}
+
 function getQueryParameters(str) {
   // Source: https://css-tricks.com/snippets/jquery/get-query-params-object/
   return str.replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0]
@@ -13,11 +18,13 @@ function fetchData() {
 
 
 function load(response) {
-  console.log(response);
   var htmlTemplate = transformData(response);
 
-  // Append to DOM
-  $('#data').empty().append(htmlTemplate);
+  var queryType = response['type'];
+  var headers = HEADERTEMPLATES[queryType];
+
+  $('#headers').empty().append(headers);
+  $('#results').empty().append(htmlTemplate);
 }
 
 
@@ -67,7 +74,7 @@ $(function() {
       delete data['dateMax'];
     }
 
-    if (data['actionType'] === '') {
+    if (data['actionType'] === 'all') {
       delete data['actionType'];
     }
 
@@ -97,6 +104,7 @@ $(function() {
     $('.tab__panel--active').removeClass('tab__panel--active');
 
     // Apply active class to this element
-    $(this).parent('.tab__panel').addClass('tab__panel--active');
+    $selectedTabPanel = $(this).parent('.tab__panel');
+    $selectedTabPanel.addClass('tab__panel--active');
   });
 });
