@@ -96,6 +96,7 @@ td {
   float: right;
   width: 23%;
 }
+
 .form__label {
   display: inline-block;
   min-width: 100px;
@@ -120,6 +121,7 @@ td {
   background-size: 18px 18px;
   padding-right: 24px;
 }
+
 .form__input {
   width: 100%;
 }
@@ -153,6 +155,7 @@ td {
   position: relative;
   height: 37px;
 }
+
 .results__export {
   cursor: pointer;
   margin-top: 2px;
@@ -248,6 +251,7 @@ td {
 .tab__panel--active {
     z-index: 16;
 }
+
 .tab__panel--active .tab__link {
   background: #fff;
 }
@@ -264,5 +268,33 @@ td {
 }
 
 .tab__icon--stats-bars {
+
+}
+
+
+
+
+
+/* -------------------------------- *\
+    #PLACEHOLDER
+\* -------------------------------- */
+
+.placeholder {
+    position: relative;
+    padding: 30px;
+    text-align: center;
+    background-color: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    /*box-shadow: inset 0 0 10px rgba(0,0,0,0.05);*/
+}
+
+.placeholder__content {
+  margin: 0 auto;
+  padding: 75px 0;
+  width: 200px;
+}
+
+.placeholder__data {
 
 }

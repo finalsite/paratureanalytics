@@ -1,5 +1,5 @@
 var HEADERTEMPLATES = {
-  'standard': '<tr><th>Date</th><th>Ticket</th><th>CSR</th><th>Action</th></tr>',
+  'standard': '<tr><th>Date</th><th>Ticket</th><th>Assigned To</th><th>Action</th></tr>',
   'aggregate': '<tr><th>Date</th><th>Total</th></tr>'
 }
 
@@ -16,6 +16,22 @@ function fetchData() {
   });
 }
 
+function loadActionTypeList() {
+  $.ajax({
+    url: 'api/v1/action/type',
+    dataType: 'json',
+    success: function(response) {
+      var results = response.results;
+
+      var htmlTemplate = '';
+      for (var i = 0; i < results.length; i++) {
+        htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
+      }
+
+      $('#actionType').empty().append(htmlTemplate);
+    }
+  });
+}
 
 function load(response) {
   var htmlTemplate = transformData(response);
@@ -23,6 +39,8 @@ function load(response) {
   var queryType = response['type'];
   var headers = HEADERTEMPLATES[queryType];
 
+  $('.placeholder__data').hide()
+  $('#total').empty().append('<h4>Total: ' + response['total'] + '<h4>');
   $('#headers').empty().append(headers);
   $('#results').empty().append(htmlTemplate);
 }
@@ -56,6 +74,9 @@ function transformData(response) {
 /* Event Listeners */
 
 $(function() {
+  loadActionTypeList();
+
+
   $('#report').on('submit', function(event) {
     event.preventDefault();
 
@@ -107,4 +128,6 @@ $(function() {
     $selectedTabPanel = $(this).parent('.tab__panel');
     $selectedTabPanel.addClass('tab__panel--active');
   });
+
+
 });
