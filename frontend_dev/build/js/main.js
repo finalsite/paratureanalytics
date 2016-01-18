@@ -89,27 +89,21 @@ $(function() {
     if (data['groupBy'] === 'none') {
       delete data['groupBy'];
     }
-
     if (data['dateMin'] === '') {
       delete data['dateMin'];
     }
-
     if (data['dateMax'] === '') {
       delete data['dateMax'];
     }
-
     if (data['actionType'] === 'all') {
       delete data['actionType'];
     }
-
     if (data['ticketNumber'] === '') {
       delete data['ticketNumber'];
     }
-
     if (data['assignedTo'] === 'all') {
       delete data['assignedTo'];
     }
-
     if (data['assignedFrom'] === 'all') {
       delete data['assignedFrom'];
     }
