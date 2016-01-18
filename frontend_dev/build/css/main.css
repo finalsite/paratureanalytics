@@ -157,6 +157,13 @@ td {
   border-color: #ccc;
 }
 
+a.button {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
 
 
 /* -------------------------------- *\
