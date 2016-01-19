@@ -66,3 +66,6 @@ config.py
 
 # NPM Modules
 node_modules
+
+# JavaScript testing
+jasmine
