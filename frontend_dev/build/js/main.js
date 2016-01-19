@@ -1,24 +1,6 @@
-var HEADERTEMPLATES = {
-  'standard': '<tr><th>Date</th><th>Ticket</th><th>Assigned To</th><th>Action</th></tr>',
-  'aggregate': '<tr><th>Date</th><th>Total</th></tr>'
-}
-
-function getQueryParameters(str) {
-  // Source: https://css-tricks.com/snippets/jquery/get-query-params-object/
-  return str.replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0]
-}
-
-function fetchData() {
-  $.ajax({
-    url: 'api/v1/action',
-    dataType: 'json',
-    success: load
-  });
-}
-
 function loadActionTypeList() {
   $.ajax({
-    url: 'api/v1/action/type',
+    url: 'http://localhost:5000/api/v1/action/type',
     dataType: 'json',
     success: function(response) {
       var results = response.results;
@@ -33,98 +15,29 @@ function loadActionTypeList() {
   });
 }
 
-function load(response) {
-  var htmlTemplate = transformData(response);
 
-  var queryType = response['type'];
-  var headers = HEADERTEMPLATES[queryType];
-
-  $dataPlaceholderContent = $('.placeholder__data .placeholder__content');
-  $dataPlaceholderContent.removeClass('placeholder__content--empty');
-  $dataPlaceholderContent.children('h3').remove();
-
-  $('#total').empty().append('<p>Total: ' + response['total'] + '<p>');
-  $('#headers').empty().append(headers);
-  $('#results').empty().append(htmlTemplate);
-}
+loadActionTypeList();
 
 
-function transformData(response) {
-  var rawData = response['results'];
-  var htmlData = [];
+var requests = [];
 
-  rawData.forEach(function(elem) {
-    var htmlElem = '<tr>';
-    if (elem.ticketNumber) {
-      htmlElem += '<td>' + elem.timestamp.toLocaleString().slice(0, 10) + '</td>';
-      htmlElem += '<td>' + elem.ticketNumber + '</td>';
-      htmlElem += '<td>' + elem.assignedTo + '</td>';
-      htmlElem += '<td>' + elem.actionType + '</td>';
-    } else {
-      htmlElem += '<td>' + elem._id + '</td>';
-      htmlElem += '<td>' + elem.count + '</td>';
-    }
-    htmlElem += '</tr>';
+$('#report').on('submit', function(event) {
+  event.preventDefault();
 
-    htmlData.push(htmlElem);
-  });
+  var formDataAsQueryString = $(this).serialize();
 
-  var htmlTemplate = htmlData.join('');
-  return htmlTemplate;
-}
+  var request = new ReportRequest(formDataAsQueryString);
+  request.render();
+
+  requests.push(request);
+});
 
 
-/* Event Listeners */
+$('.tabs').on('click', '.tab__link', function() {
+  // Select all active class elements and remove them
+  $('.tab__panel--active').removeClass('tab__panel--active');
 
-$(function() {
-  loadActionTypeList();
-
-
-  $('#report').on('submit', function(event) {
-    event.preventDefault();
-
-    var data = $(this).serialize();
-    data = getQueryParameters(data);
-
-    if (data['groupBy'] === 'none') {
-      delete data['groupBy'];
-    }
-    if (data['dateMin'] === '') {
-      delete data['dateMin'];
-    }
-    if (data['dateMax'] === '') {
-      delete data['dateMax'];
-    }
-    if (data['actionType'] === 'all') {
-      delete data['actionType'];
-    }
-    if (data['ticketNumber'] === '') {
-      delete data['ticketNumber'];
-    }
-    if (data['assignedTo'] === 'all') {
-      delete data['assignedTo'];
-    }
-    if (data['assignedFrom'] === 'all') {
-      delete data['assignedFrom'];
-    }
-
-    var uri = '/api/v1/action?' + $.param(data)
-    $.ajax({
-      url: uri,
-      dataType: 'json',
-      success: load
-    });
-  });
-
-  // Tab Element
-  $('.tabs').on('click', '.tab__link', function() {
-    // Select all active class elements and remove them
-    $('.tab__panel--active').removeClass('tab__panel--active');
-
-    // Apply active class to this element
-    $selectedTabPanel = $(this).parent('.tab__panel');
-    $selectedTabPanel.addClass('tab__panel--active');
-  });
-
-
+  // Apply active class to this element
+  $selectedTabPanel = $(this).parent('.tab__panel');
+  $selectedTabPanel.addClass('tab__panel--active');
 });
