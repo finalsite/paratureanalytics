@@ -59,6 +59,8 @@ gulp.task('production-push', function() {
 
   var jsFiles = [
     './build/js/jquery.min.js',
+    './build/js/exceptions.js',
+    './build/js/report.js',
     './build/js/main.js'
   ];
 
