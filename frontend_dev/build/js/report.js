@@ -116,6 +116,11 @@ ReportRequest.prototype.onSuccess = function(response) {
   $('#total').empty().append('<p>Total: ' + response['total'] + '<p>');
   $('#headers').empty().append(headers);
   $('#results').empty().append(htmlTemplate);
+
+  // Set Export button to report parameters
+  $exportButton = $('.results__export.button');
+  $exportButton.attr('href', 'http://localhost:5000/api/v1/download/myreport?' + this.parameters);
+  $exportButton.removeClass('disabled');
 }
 
 /**

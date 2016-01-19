@@ -21,7 +21,9 @@ p {
   border-bottom: 1px solid #eaeaea;
 }
 
-
+a.disabled {
+  pointer-events: none;
+}
 
 
 
