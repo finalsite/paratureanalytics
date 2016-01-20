@@ -1,7 +1,7 @@
 // Load form inputs
 loadActionTypeList();
 loadCsrList();
-
+loadDateInputs();
 
 // Bind event handlers
 $('#report').on('submit', function(event) {

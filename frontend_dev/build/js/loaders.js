@@ -46,3 +46,62 @@ function loadCsrList() {
     }
   });
 }
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function loadDateInputs() {
+  var today = getTodayFormatted();
+  var firstDayOfMonth = getFirstDayOfCurrentMonth();
+
+  $('#dateMin').attr('value', firstDayOfMonth);
+  $('#dateMax').attr('value', today);
+}
+
+ /**
+  *
+  *
+  *
+  *
+  */
+
+function getTodayFormatted() {
+  var today = new Date();
+
+  var day = padToTwoDigits(today.getDate() + 1);
+  var month = padToTwoDigits(today.getMonth() + 1);
+  var year = today.getFullYear();
+
+  return year + '-' + month + '-' + day;
+}
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function getFirstDayOfCurrentMonth() {
+ var today = new Date();
+
+ var month = padToTwoDigits(today.getMonth() + 1);
+ var year = today.getFullYear();
+ console.log(year + '-' + month + '-' + '01');
+ return year + '-' + month + '-' + '01';
+}
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function padToTwoDigits(number) {
+     return (number < 10 ? '0' : '') + number;
+}
