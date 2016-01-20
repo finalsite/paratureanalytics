@@ -56,7 +56,7 @@ function loadCsrList() {
 
 function loadDateInputs() {
   var today = getTodayFormatted();
-  var firstDayOfMonth = getFirstDayOfCurrentMonth();
+  var firstDayOfMonth = getFirstDateOfCurrentMonth();
 
   $('#dateMin').attr('value', firstDayOfMonth);
   $('#dateMax').attr('value', today);
@@ -86,12 +86,12 @@ function getTodayFormatted() {
  *
  */
 
-function getFirstDayOfCurrentMonth() {
+function getFirstDateOfCurrentMonth() {
  var today = new Date();
 
  var month = padToTwoDigits(today.getMonth() + 1);
  var year = today.getFullYear();
- console.log(year + '-' + month + '-' + '01');
+
  return year + '-' + month + '-' + '01';
 }
 
