@@ -21,6 +21,7 @@ a.disabled {
 
 
 
+
 /* -------------------------------- *\
     #SECTIONS
 \* -------------------------------- */
@@ -34,6 +35,8 @@ a.disabled {
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
 }
+
+
 
 
 
@@ -101,6 +104,9 @@ td {
 #headers tr:hover {
   background: initial;
 }
+
+
+
 
 
 /* -------------------------------- *\
@@ -349,7 +355,6 @@ a.button {
     background-color: #fafafa;
     border: 1px solid #e5e5e5;
     border-radius: 3px;
-    /*box-shadow: inset 0 0 10px rgba(0,0,0,0.05);*/
 }
 
 .placeholder__content {

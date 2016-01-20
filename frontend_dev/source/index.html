@@ -27,7 +27,6 @@
             <img class="logo__image" src="images/stack.png">
             <h1 class="logo__title">Parature Analytics</h1>
           </div>
-
         </div>
         <div class="grid__col-6">
           <nav class="nav text--right">
@@ -39,157 +38,115 @@
       </div>
     </div>
   </header>
-
-<section class="section__builder">
-  <div class="grid">
-
-    <div class="grid__row grid__row--distinct">
-
-      <div class="grid__col-1"></div>
-
-      <div class="grid__col-10">
-
-        <form id="report" class="form" method="get">
-
-          <div class="form__row">
-
-            <div class="form__section form__section--four-col">
-              <label class="form__label" for="dateMin">Date from:</label>
-              <input class="input" type="date" id="dateMin" name="dateMin" tabindex="1">
-            </div>
-
-            <div class="form__section form__section--four-col">
-              <label class="form__label" for="dateMax">Date to:</label>
-              <input class="input" type="date" id="dateMax" name="dateMax" tabindex="2">
-            </div>
-
-            <div class="form__section form__section--four-col">
-              <label class="form__label" for="groupBy">Group by:</label>
-              <select class="select" name="groupBy" id="groupBy" tabindex="3">
-                <option value="none">None</option>
-                <option value="month">Month</option>
-                <option value="day">Day</option>
-              </select>
-            </div>
-
-            <div class="form__section form__section--four-col text--right">
-              <input class="button" type="submit" value="Run Report" tabindex="7">
-            </div>
-
-          </div>
-
-          <div class="form__row">
-
-            <div class="form__section form__section--four-col">
-              <label class="form__label" for="actionType">Action Type:</label>
-              <select class="select" name="actionType" id="actionType" tabindex="4">
-                <option value="all">Loading..</option>
-              </select>
-            </div>
-
-            <div class="form__section form__section--four-col">
-              <label class="form__label" for="assignedTo">Assigned To:</label>
-              <select class="select" name="assignedTo" id="assignedTo" tabindex="5">
-                <option value="all">Loading..</option>
-              </select>
-            </div>
-
-            <div class="form__section form__section--four-col">
-              <label class="form__label" for="assignedFrom">Assigned From:</label>
-              <select class="select" name="assignedFrom" id="assignedFrom" tabindex="6">
-                <option value="all">Loading..</option>
-              </select>
-            </div>
-
-            <div class="form__section form__section--four-col"></div>
-
-          </div>
-
-        </form>
-
-      </div>
-      <div class="grid__col-1"></div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section__results">
-  <div class="grid">
-    <div class="grid__row grid__row--distinct grid__row--alt">
-      <div class="grid__col-1"></div>
-
-      <div class="grid__col-10 results__nav">
-        <a class="results__export button disabled" href="/api/v1/download/action">
-          <img class="export__icon" src="images/file-excel.png">
-          <h5 class="export__name">Export</h5>
-        </a>
-      </div>
-
-      <div class="grid__col-1"></div>
-    </div>
-  </div>
-</section>
-
-  <div class="grid">
-    <div class="grid__row">
-      <div class="grid__col-1"></div>
-      <div class="grid__col-10">
-
-        <div class="tabs">
-          <div class="tab__panel tab__panel--active">
-            <div class="tab__link">
-              <img class="tab__icon tab__icon--table" src="images/table2.png">
-              <h5 class="tab__name">Data</h5>
-            </div>
-
-            <div class="tab__content">
-              <div class="placeholder placeholder__data">
-                <div class="placeholder__content placeholder__content--empty">
-                  <h3>Run a report!</h3>
-                  <div id="total"></div>
-                  <table id="headers"></table>
-                  <table id="results"></table>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="tab__panel">
-            <div class="tab__link">
-              <img class="tab__icon tab__icon--stats-bar" src="images/stats-bars.png">
-              <h5 class="tab__name">Graphs</h5>
-            </div>
-
-            <div class="tab__content">
-              <div class="placeholder">
-                <div class="placeholder__content placeholder__content--empty">
-                  <h3>Coming soon!</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
-      </div>
-      <div class="grid__col-1"></div>
-    </div>
-
-  </div>
-
-  <!-- <footer class="footer">
+  <section class="section__builder">
     <div class="grid">
       <div class="grid__row">
-        <div class="grid__col-12 text--center">
-          <span class="copy">Parature Analytics &copy; 2016 - Fresh as lettuce</span>
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10">
+          <form id="report" class="form" method="get">
+            <div class="form__row">
+              <div class="form__section form__section--four-col">
+                <label class="form__label" for="dateMin">Date from:</label>
+                <input class="input" type="date" id="dateMin" name="dateMin" tabindex="1">
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="form__label" for="dateMax">Date to:</label>
+                <input class="input" type="date" id="dateMax" name="dateMax" tabindex="2">
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="form__label" for="groupBy">Group by:</label>
+                <select class="select" name="groupBy" id="groupBy" tabindex="3">
+                  <option value="none">None</option>
+                  <option value="month">Month</option>
+                  <option value="day">Day</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col text--right">
+                <input class="button" type="submit" value="Run Report" tabindex="7">
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__section form__section--four-col">
+                <label class="form__label" for="actionType">Action Type:</label>
+                <select class="select" name="actionType" id="actionType" tabindex="4">
+                  <option value="all">Loading..</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="form__label" for="assignedTo">Assigned To:</label>
+                <select class="select" name="assignedTo" id="assignedTo" tabindex="5">
+                  <option value="all">Loading..</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="form__label" for="assignedFrom">Assigned From:</label>
+                <select class="select" name="assignedFrom" id="assignedFrom" tabindex="6">
+                  <option value="all">Loading..</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col"></div>
+            </div>
+          </form>
         </div>
+        <div class="grid__col-1"></div>
       </div>
     </div>
-  </footer> -->
+  </section>
+  <section class="section__results">
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10 results__nav">
+          <a class="results__export button disabled" href="/api/v1/download/action">
+            <img class="export__icon" src="images/file-excel.png">
+            <h5 class="export__name">Export</h5>
+          </a>
+        </div>
+        <div class="grid__col-1"></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10">
+          <div class="tabs">
+            <div class="tab__panel tab__panel--active">
+              <div class="tab__link">
+                <img class="tab__icon tab__icon--table" src="images/table2.png">
+                <h5 class="tab__name">Data</h5>
+              </div>
+              <div class="tab__content">
+                <div class="placeholder placeholder__data">
+                  <div class="placeholder__content placeholder__content--empty">
+                    <h3>Run a report!</h3>
+                    <div id="total"></div>
+                    <table id="headers"></table>
+                    <table id="results"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab__panel">
+              <div class="tab__link">
+                <img class="tab__icon tab__icon--stats-bar" src="images/stats-bars.png">
+                <h5 class="tab__name">Graphs</h5>
+              </div>
+              <div class="tab__content">
+                <div class="placeholder">
+                  <div class="placeholder__content placeholder__content--empty">
+                    <h3>Coming soon!</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid__col-1"></div>
+      </div>
+    </div>
+  </section>
   <!-- build:js -->
   <script src="js/jquery.min.js"></script>
   <script src="js/exceptions.js"></script>
