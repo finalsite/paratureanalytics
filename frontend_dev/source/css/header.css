@@ -39,6 +39,7 @@
 }
 
 .logo__image {
-	height: 35px;
-	width: 35px;
+	margin-top: 2px;
+	height: 32px;
+	width: 32px;
 }
