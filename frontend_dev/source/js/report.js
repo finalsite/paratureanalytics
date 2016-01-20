@@ -24,7 +24,7 @@ function ReportRequest(parameters) {
  */
 
 ReportRequest.prototype.headerTemplates = {
-  'standard': '<tr><th>Date</th><th>Ticket</th><th>Assigned To</th><th>Action</th></tr>',
+  'standard': '<tr><th>Date</th><th>Ticket</th><th>Action</th><th>Assigned To</th><th>Assigned From</th></tr>',
   'aggregate': '<tr><th>Date</th><th>Total</th></tr>'
 }
 
@@ -153,8 +153,9 @@ ReportRequest.prototype.getResponseAsStrTemplate = function() {
     if (elem.ticketNumber) {
       htmlElem += '<td>' + elem.timestamp.toLocaleString().slice(0, 10) + '</td>';
       htmlElem += '<td>' + elem.ticketNumber + '</td>';
-      htmlElem += '<td>' + elem.assignedTo + '</td>';
       htmlElem += '<td>' + elem.actionType + '</td>';
+      htmlElem += '<td>' + elem.assignedTo + '</td>';
+      htmlElem += '<td>' + (elem.assignedFrom || '') + '</td>';
     } else {
       htmlElem += '<td>' + elem._id + '</td>';
       htmlElem += '<td>' + elem.count + '</td>';
