@@ -14,7 +14,7 @@ var proxy = require('proxy-middleware');
 
 
 gulp.task('copy-html', function() {
-  gulp.src('./source/index.html')
+  gulp.src('./source/*.html')
     .pipe(gulp.dest('./build/'));
 });
 
@@ -94,5 +94,5 @@ gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], function
 
   gulp.watch('./source/css/*', ['styles', browserSync.reload]);
   gulp.watch('./source/js/*', ['scripts', browserSync.reload])
-  gulp.watch('./source/index.html', ['copy-html']);
+  gulp.watch('./source/*.html', ['copy-html']);
 });
