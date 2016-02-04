@@ -77,7 +77,7 @@ gulp.task('production-push', function() {
       'css': 'css/all.min.css',
       'js': 'js/all.js'
     }))
-    .pipe(gulp.dest('../paratureanalyticsdashboard/static/'));
+    .pipe(gulp.dest('../paratureanalyticsdashboard/templates/'));
 });
 
 
