@@ -40,7 +40,7 @@ gulp.task('scripts', function() {
 });
 
 
-gulp.task('production-push', function() {
+gulp.task('push-to-flask', function() {
   var cssFiles = [
     './build/css/normalize.css',
     './build/css/score_required.css',
@@ -50,6 +50,7 @@ gulp.task('production-push', function() {
     './build/css/footer.css',
     './build/css/navigation.css',
     './build/css/main.css',
+    './build/css/login.css'
   ];
 
   gulp.src(cssFiles)
@@ -72,7 +73,7 @@ gulp.task('production-push', function() {
   gulp.src('./build/images/*')
     .pipe(gulp.dest('../paratureanalyticsdashboard/static/images/'));
 
-  gulp.src("./build/index.html")
+  gulp.src("./build/*.html")
     .pipe(htmlReplace({
       'css': 'css/all.min.css',
       'js': 'js/all.js'
