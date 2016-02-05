@@ -40,17 +40,20 @@
   </header>
   <section class="main">
     <div class="form__container">
-      <form class="login__form">
+      <form id="login__form" class="login__form" method="post">
         <div class="form__section form__section--one-col">
           <h2>Sign In to Your Account</h2>
           <label class="form__label" for="username">Email Address</label>
           <input class="input" type="text" name="username" id="username">
           <label class="form__label" for="password">Password</label>
-          <input class="input" type="text" name="password" id="password">
+          <input class="input" type="password" name="password" id="password">
           <input class="input button" type="submit" value="Sign In">
         </div>
       </form>
     </div>
-  </sectin>
+  </section>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/exceptions.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
