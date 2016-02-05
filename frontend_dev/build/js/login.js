@@ -19,9 +19,7 @@ $('#login__form').on('submit', function(event) {
       'Authorization': authorizationHeaderValue
     },
     crossDomain: true,
-    success: function(response) {
-      console.log(response);
-    },
+    success: onLoginSuccess,
     error: function(error) {
       console.log(error);
     }
@@ -36,23 +34,6 @@ $('#login__form').on('submit', function(event) {
  *
  */
 
-function _getQueryStrAsObj(str) {
-  // Source: https://css-tricks.com/snippets/jquery/get-query-params-object/
-  return str.replace(/(^\?)/, '').split("&").map(function(n) {
-    return n = n.split("="), this[n[0]] = n[1], this
-  }.bind({}))[0]
-}
-
-
-/**
- *
- *
- *
- *
- */
-
-function b64EncodeUnicode(str) {
-  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-    return String.fromCharCode('0x' + p1);
-  }));
-}
+ function onLoginSuccess(response) {
+    sessionStorage.accessToken = response.token;
+ }
