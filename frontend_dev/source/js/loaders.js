@@ -22,6 +22,7 @@ function loadActionTypeList() {
   });
 }
 
+
 /**
  *
  *
@@ -49,22 +50,42 @@ function onActionTypeListSuccess(response) {
  */
 
 function loadCsrList() {
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+
   $.ajax({
     url: 'http://localhost:5000/api/v1/action/csr',
     dataType: 'json',
-    success: function(response) {
-      var results = response.results;
-
-      var htmlTemplate = '<option value="all">All</option>';
-      for (var i = 0; i < results.length; i++) {
-        htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
-      }
-
-      $('#assignedTo').empty().append(htmlTemplate);
-      $('#assignedFrom').empty().append(htmlTemplate);
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: onCsrListSuccess,
+    error: function(error) {
+      console.log(error);
     }
   });
 }
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function onCsrListSuccess(response) {
+  var results = response.results;
+
+  var htmlTemplate = '<option value="all">All</option>';
+  for (var i = 0; i < results.length; i++) {
+    htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
+  }
+
+  $('#assignedTo').empty().append(htmlTemplate);
+  $('#assignedFrom').empty().append(htmlTemplate);
+}
+
 
 /**
  *
