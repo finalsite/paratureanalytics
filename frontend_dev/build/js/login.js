@@ -21,7 +21,7 @@ $('#login__form').on('submit', function(event) {
     crossDomain: true,
     success: onLoginSuccess,
     error: function(error) {
-      console.log(error);
+      alert('Invalid username or password!')
     }
   });
 });
