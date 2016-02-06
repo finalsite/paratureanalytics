@@ -86,9 +86,14 @@ ReportRequest.prototype._getQueryStrAsObj = function(str) {
 
 ReportRequest.prototype.render = function() {
   var uri = this.endpoint + this.parameters;
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
   $.ajax({
     url: uri,
     dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
     success: this.onSuccess,
     error: this.onError,
     context: this
