@@ -7,8 +7,10 @@
 
 $('#login__form').on('submit', function(event) {
   event.preventDefault();
-  var formData = _getQueryStrAsObj($(this).serialize());
+  // Disable login button
+  $('#login__submit').attr('disabled', true);
 
+  var formData = _getQueryStrAsObj($(this).serialize());
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(formData['username'] + ':' + formData['password']);
 
   $.ajax({
@@ -22,6 +24,10 @@ $('#login__form').on('submit', function(event) {
     success: onLoginSuccess,
     error: function(error) {
       alert('Invalid username or password!')
+    },
+    complete: function(xhr, status) {
+      // Re-enable login button
+      $('#login__submit').attr('disabled', false);
     }
   });
 });

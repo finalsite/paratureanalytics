@@ -50,3 +50,15 @@
 .form__section--one-col .input {
   width: 100%;
 }
+
+#login__submit[disabled] {
+  background: #aaa;
+  border-color: #aaa;
+  color: #eaeaea;
+}
+
+#login__submit[disabled]:hover {
+  background: #aaa;
+  border-color: #aaa;
+  color: #eaeaea;
+}
