@@ -36,4 +36,5 @@ $('#login__form').on('submit', function(event) {
 
  function onLoginSuccess(response) {
     sessionStorage.accessToken = response.token;
+    window.location.replace('/');
  }
