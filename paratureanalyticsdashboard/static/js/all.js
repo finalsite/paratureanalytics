@@ -148,6 +148,20 @@ $('#login__form').on('submit', function(event) {
  *
  */
 
+$('#sign__out').on('click', function(event) {
+  event.preventDefault();
+  // Disable login button
+  sessionStorage.accessToken = '';
+  window.location.replace('/login');
+});
+
+/**
+ *
+ *
+ *
+ *
+ */
+
 function loadActionTypeList() {
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
   $.ajax({
@@ -160,7 +174,7 @@ function loadActionTypeList() {
     crossDomain: true,
     success: onActionTypeListSuccess,
     error: function(error) {
-      console.log(error);
+      $('#actionType').empty().append('<option value="boo">Error: Session expired</option>');
     }
   });
 }
@@ -204,7 +218,7 @@ function loadCsrList() {
     crossDomain: true,
     success: onCsrListSuccess,
     error: function(error) {
-      console.log(error);
+      $('#assignedTo, #assignedFrom').empty().append('<option value="boo">Error: Session expired</option>');
     }
   });
 }
@@ -225,8 +239,7 @@ function onCsrListSuccess(response) {
     htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
   }
 
-  $('#assignedTo').empty().append(htmlTemplate);
-  $('#assignedFrom').empty().append(htmlTemplate);
+  $('#assignedTo, #assignedFrom').empty().append(htmlTemplate);
 }
 
 
@@ -378,8 +391,11 @@ ReportRequest.prototype.onSuccess = function(response) {
  */
 
 ReportRequest.prototype.onError = function(response) {
+  if (response.status === 403) {
+    alert('Login session expired!');
+    window.location.replace('/login');
+  }
   this.requestError = response;
-
   $dataPlaceholderContent = $('.placeholder__data .placeholder__content');
   $dataPlaceholderContent.children('h3').text('Something went wrong...');
 }
@@ -416,13 +432,79 @@ ReportRequest.prototype.getResponseAsStrTemplate = function() {
   return htmlTemplate;
 }
 
+/**
+ *
+ *
+ *
+ */
+ 
+$('.results__export.button').on('click', function(event) {
+  event.preventDefault();
+  if (lastRunReportParameters === '') {
+    alert("Can't export a report that was never run!");
+    return;
+  }
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+  var downloadUrl = 'http://localhost:5000/api/v1/download?' + lastRunReportParameters;
+
+  $.ajax({
+    type: 'GET',
+    url: downloadUrl,
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: onExportSuccess,
+    error: function(error) {
+      if (response.status === 403) {
+        alert('Login session expired!');
+        window.location.replace('/login');
+      }
+    }
+  });
+})
+
+/**
+ *
+ *
+ *
+ */
+
+function onExportSuccess(response) {
+  var downloadLink = response.file_token;
+  var anchorTemplate = '<a id="tempLink" href="{link}" target="_blank"></a>'.replace('{link}', downloadLink);
+  var $tempLink = $(anchorTemplate);
+  $('body').append($tempLink);
+  document.getElementById('tempLink').click();
+  $('#tempLink').remove();
+}
+
 var lastRunReportParameters = '';
 
 
 if (window.location.pathname === '/') {
-  loadActionTypeList();
-  loadCsrList();
-  loadDateInputs();
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:5000/api/v1/token',
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: function(response) {
+      sessionStorage.accessToken = response.token;
+      loadActionTypeList();
+      loadCsrList();
+      loadDateInputs();
+    },
+    error: function(error) {
+      alert('Session has expired!');
+      window.location.replace('/login');
+    },
+  });
 }
 
 
@@ -446,36 +528,7 @@ $('.tabs').on('click', '.tab__link', function() {
 });
 
 
-$('.results__export.button').on('click', function(event) {
+$('#sign__up').on('click', function(event) {
   event.preventDefault();
-  if (lastRunReportParameters === '') {
-    alert("Can't export a report that was never run!");
-    return;
-  }
-  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
-  var downloadUrl = 'http://localhost:5000/api/v1/download?' + lastRunReportParameters;
-
-  $.ajax({
-    type: 'GET',
-    url: downloadUrl,
-    dataType: 'json',
-    headers: {
-      'Authorization': authorizationHeaderValue
-    },
-    crossDomain: true,
-    success: onExportSuccess,
-    error: function(error) {
-      console.log(error);
-    }
-  });
+  alert('#alphaproblems -> Feature not yet available!');
 })
-
-
-function onExportSuccess(response) {
-  var downloadLink = response.file_token;
-  var anchorTemplate = '<a id="tempLink" href="{link}" target="_blank"></a>'.replace('{link}', downloadLink);
-  var $tempLink = $(anchorTemplate);
-  $('body').append($tempLink);
-  document.getElementById('tempLink').click();
-  $('#tempLink').remove();
-}
