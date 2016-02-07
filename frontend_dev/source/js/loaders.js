@@ -17,7 +17,7 @@ function loadActionTypeList() {
     crossDomain: true,
     success: onActionTypeListSuccess,
     error: function(error) {
-      console.log(error);
+      $('#actionType').empty().append('<option value="boo">Error: Session expired</option>');
     }
   });
 }
@@ -61,7 +61,7 @@ function loadCsrList() {
     crossDomain: true,
     success: onCsrListSuccess,
     error: function(error) {
-      console.log(error);
+      $('#assignedTo, #assignedFrom').empty().append('<option value="boo">Error: Session expired</option>');
     }
   });
 }
@@ -82,8 +82,7 @@ function onCsrListSuccess(response) {
     htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
   }
 
-  $('#assignedTo').empty().append(htmlTemplate);
-  $('#assignedFrom').empty().append(htmlTemplate);
+  $('#assignedTo, #assignedFrom').empty().append(htmlTemplate);
 }
 
 

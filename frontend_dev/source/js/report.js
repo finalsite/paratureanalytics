@@ -131,8 +131,11 @@ ReportRequest.prototype.onSuccess = function(response) {
  */
 
 ReportRequest.prototype.onError = function(response) {
+  if (response.status === 403) {
+    alert('Login session expired!');
+    window.location.replace('/login');
+  }
   this.requestError = response;
-
   $dataPlaceholderContent = $('.placeholder__data .placeholder__content');
   $dataPlaceholderContent.children('h3').text('Something went wrong...');
 }
