@@ -14,7 +14,7 @@ $('#login__form').on('submit', function(event) {
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(formData['username'] + ':' + formData['password']);
 
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     url: 'http://localhost:5000/api/v1/token',
     dataType: 'json',
     headers: {
