@@ -11,7 +11,7 @@ $('.results__export.button').on('click', function(event) {
     return;
   }
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
-  var downloadUrl = API_HOSTNAME + 'api/v1/download?' + lastRunReportParameters;
+  var downloadUrl = API_HOSTNAME + 'api/v1/action/download?' + lastRunReportParameters;
 
   $.ajax({
     type: 'GET',
