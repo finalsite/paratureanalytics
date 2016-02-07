@@ -66,6 +66,7 @@ gulp.task('push-to-flask', function() {
     './build/js/logout.js',
     './build/js/loaders.js',
     './build/js/report.js',
+    './build/js/export.js',
     './build/js/main.js'
   ];
 
