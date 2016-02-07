@@ -7,6 +7,8 @@ var minifyCss = require('gulp-minify-css');
 
 var concat = require('gulp-concat');
 
+var uglify = require('gulp-uglify');
+
 var htmlReplace = require('gulp-html-replace');
 
 var url = require('url');
@@ -60,6 +62,7 @@ gulp.task('push-to-flask', function() {
 
   var jsFiles = [
     './build/js/jquery.min.js',
+    './build/js/config.js',
     './build/js/exceptions.js',
     './build/js/utils.js',
     './build/js/login.js',
@@ -71,7 +74,8 @@ gulp.task('push-to-flask', function() {
   ];
 
   gulp.src(jsFiles)
-    .pipe(concat('all.js'))
+    .pipe(concat('all.min.js'))
+    .pipe(uglify())
     .pipe(gulp.dest('../paratureanalyticsdashboard/static/js/'));
 
   gulp.src('./build/images/*')
@@ -80,7 +84,7 @@ gulp.task('push-to-flask', function() {
   gulp.src("./build/*.html")
     .pipe(htmlReplace({
       'css': 'css/all.min.css',
-      'js': 'js/all.js'
+      'js': 'js/all.min.js'
     }))
     .pipe(gulp.dest('../paratureanalyticsdashboard/templates/'));
 });
