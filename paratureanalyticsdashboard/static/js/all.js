@@ -26,22 +26,13 @@ RootException.prototype.constructor = Error;
  *
  */
 
-function loadActionTypeList() {
-  $.ajax({
-    url: 'http://localhost:5000/api/v1/action/type',
-    dataType: 'json',
-    success: function(response) {
-      var results = response.results;
-
-      var htmlTemplate = '<option value="all">All</option>';
-      for (var i = 0; i < results.length; i++) {
-        htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
-      }
-
-      $('#actionType').empty().append(htmlTemplate);
-    }
-  });
+function _getQueryStrAsObj(str) {
+  // Source: https://css-tricks.com/snippets/jquery/get-query-params-object/
+  return str.replace(/(^\?)/, '').split("&").map(function(n) {
+    return n = n.split("="), this[n[0]] = n[1], this
+  }.bind({}))[0]
 }
+
 
 /**
  *
@@ -50,23 +41,12 @@ function loadActionTypeList() {
  *
  */
 
-function loadCsrList() {
-  $.ajax({
-    url: 'http://localhost:5000/api/v1/action/csr',
-    dataType: 'json',
-    success: function(response) {
-      var results = response.results;
-
-      var htmlTemplate = '<option value="all">All</option>';
-      for (var i = 0; i < results.length; i++) {
-        htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
-      }
-
-      $('#assignedTo').empty().append(htmlTemplate);
-      $('#assignedFrom').empty().append(htmlTemplate);
-    }
-  });
+function b64EncodeUnicode(str) {
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+    return String.fromCharCode('0x' + p1);
+  }));
 }
+
 
 /**
  *
@@ -74,21 +54,6 @@ function loadCsrList() {
  *
  *
  */
-
-function loadDateInputs() {
-  var today = getTodayFormatted();
-  var firstDayOfMonth = getFirstDateOfCurrentMonth();
-
-  $('#dateMin').attr('value', firstDayOfMonth);
-  $('#dateMax').attr('value', today);
-}
-
- /**
-  *
-  *
-  *
-  *
-  */
 
 function getTodayFormatted() {
   var today = new Date();
@@ -99,6 +64,7 @@ function getTodayFormatted() {
 
   return year + '-' + month + '-' + day;
 }
+
 
 /**
  *
@@ -116,6 +82,7 @@ function getFirstDateOfCurrentMonth() {
  return year + '-' + month + '-' + '01';
 }
 
+
 /**
  *
  *
@@ -125,6 +92,157 @@ function getFirstDateOfCurrentMonth() {
 
 function padToTwoDigits(number) {
      return (number < 10 ? '0' : '') + number;
+}
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+$('#login__form').on('submit', function(event) {
+  event.preventDefault();
+  // Disable login button
+  $('#login__submit').attr('disabled', true);
+
+  var formData = _getQueryStrAsObj($(this).serialize());
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(formData['username'] + ':' + formData['password']);
+
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:5000/api/v1/token',
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: onLoginSuccess,
+    error: function(error) {
+      alert('Invalid username or password!')
+    },
+    complete: function(xhr, status) {
+      // Re-enable login button
+      $('#login__submit').attr('disabled', false);
+    }
+  });
+});
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+ function onLoginSuccess(response) {
+    sessionStorage.accessToken = response.token;
+    window.location.replace('/');
+ }
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function loadActionTypeList() {
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+  $.ajax({
+    type: 'GET',
+    url: 'http://localhost:5000/api/v1/action/type',
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: onActionTypeListSuccess,
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function onActionTypeListSuccess(response) {
+  var results = response.results;
+
+  var htmlTemplate = '<option value="all">All</option>';
+  for (var i = 0; i < results.length; i++) {
+    htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
+  }
+
+  $('#actionType').empty().append(htmlTemplate);
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function loadCsrList() {
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+
+  $.ajax({
+    url: 'http://localhost:5000/api/v1/action/csr',
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: onCsrListSuccess,
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function onCsrListSuccess(response) {
+  var results = response.results;
+
+  var htmlTemplate = '<option value="all">All</option>';
+  for (var i = 0; i < results.length; i++) {
+    htmlTemplate += '<option value="' + results[i] + '">' + results[i] + '</option>';
+  }
+
+  $('#assignedTo').empty().append(htmlTemplate);
+  $('#assignedFrom').empty().append(htmlTemplate);
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function loadDateInputs() {
+  var today = getTodayFormatted();
+  var firstDayOfMonth = getFirstDateOfCurrentMonth();
+
+  $('#dateMin').attr('value', firstDayOfMonth);
+  $('#dateMax').attr('value', today);
 }
 
 /**
@@ -215,9 +333,14 @@ ReportRequest.prototype._getQueryStrAsObj = function(str) {
 
 ReportRequest.prototype.render = function() {
   var uri = this.endpoint + this.parameters;
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
   $.ajax({
     url: uri,
     dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
     success: this.onSuccess,
     error: this.onError,
     context: this
@@ -245,11 +368,6 @@ ReportRequest.prototype.onSuccess = function(response) {
   $('#total').empty().append('<p>Total: ' + response['total'] + '<p>');
   $('#headers').empty().append(headers);
   $('#results').empty().append(htmlTemplate);
-
-  // Set Export button to report parameters
-  $exportButton = $('.results__export.button');
-  $exportButton.attr('href', 'http://localhost:5000/api/v1/download/myreport?' + this.parameters);
-  $exportButton.removeClass('disabled');
 }
 
 /**
@@ -298,12 +416,16 @@ ReportRequest.prototype.getResponseAsStrTemplate = function() {
   return htmlTemplate;
 }
 
-// Load form inputs
-loadActionTypeList();
-loadCsrList();
-loadDateInputs();
+var lastRunReportParameters = '';
 
-// Bind event handlers
+
+if (window.location.pathname === '/') {
+  loadActionTypeList();
+  loadCsrList();
+  loadDateInputs();
+}
+
+
 $('#report').on('submit', function(event) {
   event.preventDefault();
 
@@ -311,7 +433,10 @@ $('#report').on('submit', function(event) {
 
   var request = new ReportRequest(formDataAsQueryString);
   request.render();
+
+  lastRunReportParameters = request.parameters;
 });
+
 
 $('.tabs').on('click', '.tab__link', function() {
   $('.tab__panel--active').removeClass('tab__panel--active');
@@ -319,3 +444,38 @@ $('.tabs').on('click', '.tab__link', function() {
   $selectedTabPanel = $(this).parent('.tab__panel');
   $selectedTabPanel.addClass('tab__panel--active');
 });
+
+
+$('.results__export.button').on('click', function(event) {
+  event.preventDefault();
+  if (lastRunReportParameters === '') {
+    alert("Can't export a report that was never run!");
+    return;
+  }
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+  var downloadUrl = 'http://localhost:5000/api/v1/download?' + lastRunReportParameters;
+
+  $.ajax({
+    type: 'GET',
+    url: downloadUrl,
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: onExportSuccess,
+    error: function(error) {
+      console.log(error);
+    }
+  });
+})
+
+
+function onExportSuccess(response) {
+  var downloadLink = response.file_token;
+  var anchorTemplate = '<a id="tempLink" href="{link}" target="_blank"></a>'.replace('{link}', downloadLink);
+  var $tempLink = $(anchorTemplate);
+  $('body').append($tempLink);
+  document.getElementById('tempLink').click();
+  $('#tempLink').remove();
+}
