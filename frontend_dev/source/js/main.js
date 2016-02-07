@@ -1,10 +1,11 @@
-// Load form inputs
-loadActionTypeList();
-loadCsrList();
-loadDateInputs();
-
-
 var lastRunReportParameters = '';
+
+
+if (window.location.pathname === '/') {
+  loadActionTypeList();
+  loadCsrList();
+  loadDateInputs();
+}
 
 
 $('#report').on('submit', function(event) {
