@@ -47,7 +47,10 @@ $('.results__export.button').on('click', function(event) {
     crossDomain: true,
     success: onExportSuccess,
     error: function(error) {
-      console.log(error);
+      if (response.status === 403) {
+        alert('Login session expired!');
+        window.location.replace('/login');
+      }
     }
   });
 })
