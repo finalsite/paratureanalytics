@@ -5,4 +5,4 @@
 from paratureanalyticsdashboard import app
 
 
-app.run(port=8000)
+app.run(port=8000, threaded=True)
