@@ -26,3 +26,9 @@ $('.tabs').on('click', '.tab__link', function() {
   $selectedTabPanel = $(this).parent('.tab__panel');
   $selectedTabPanel.addClass('tab__panel--active');
 });
+
+
+$('#sign__up').on('click', function(event) {
+  event.preventDefault();
+  alert('Feature not yet available!');
+})
