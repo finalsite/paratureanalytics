@@ -6,7 +6,7 @@ if (window.location.pathname === '/') {
 
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:5000/api/v1/token',
+    url: API_HOSTNAME + 'api/v1/token',
     dataType: 'json',
     headers: {
       'Authorization': authorizationHeaderValue

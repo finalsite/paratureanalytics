@@ -9,7 +9,7 @@ function loadActionTypeList() {
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:5000/api/v1/action/type',
+    url: API_HOSTNAME + 'api/v1/action/type',
     dataType: 'json',
     headers: {
       'Authorization': authorizationHeaderValue
@@ -53,7 +53,7 @@ function loadCsrList() {
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
 
   $.ajax({
-    url: 'http://localhost:5000/api/v1/action/csr',
+    url: API_HOSTNAME + 'api/v1/action/csr',
     dataType: 'json',
     headers: {
       'Authorization': authorizationHeaderValue

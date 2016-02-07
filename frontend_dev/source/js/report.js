@@ -11,7 +11,7 @@ function ReportRequest(parameters) {
     throw new RootException('Missing argument. 1 expected, 0 given!');
   }
   this.parameters = this._parseParameters(parameters);
-  this.endpoint = 'http://localhost:5000/api/v1/action?';
+  this.endpoint = API_HOSTNAME + 'api/v1/action?';
   this.response = null;
   this.requestError = null;
 }
