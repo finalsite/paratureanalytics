@@ -2,9 +2,27 @@ var lastRunReportParameters = '';
 
 
 if (window.location.pathname === '/') {
-  loadActionTypeList();
-  loadCsrList();
-  loadDateInputs();
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:5000/api/v1/token',
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: function(response) {
+      sessionStorage.accessToken = response.token;
+      loadActionTypeList();
+      loadCsrList();
+      loadDateInputs();
+    },
+    error: function(error) {
+      alert('Session has expired!');
+      window.location.replace('/login');
+    },
+  });
 }
 
 
@@ -30,5 +48,5 @@ $('.tabs').on('click', '.tab__link', function() {
 
 $('#sign__up').on('click', function(event) {
   event.preventDefault();
-  alert('Feature not yet available!');
+  alert('#alphaproblems -> Feature not yet available!');
 })
