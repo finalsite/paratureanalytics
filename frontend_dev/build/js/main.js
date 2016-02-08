@@ -19,7 +19,6 @@ if (window.location.pathname === '/') {
       loadDateInputs();
     },
     error: function(error) {
-      alert('Session has expired!');
       window.location.replace('/login');
     },
   });
