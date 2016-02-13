@@ -58,7 +58,7 @@ gulp.task('push-to-flask', function() {
   gulp.src(cssFiles)
     .pipe(concatCss('all.min.css'))
     .pipe(minifyCss())
-    .pipe(gulp.dest('../paratureanalyticsdashboard/static/css/'));
+    .pipe(gulp.dest('../paratureanalytics/static/css/'));
 
   var jsFiles = [
     './build/js/jquery.min.js',
@@ -76,17 +76,17 @@ gulp.task('push-to-flask', function() {
   gulp.src(jsFiles)
     .pipe(concat('all.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('../paratureanalyticsdashboard/static/js/'));
+    .pipe(gulp.dest('../paratureanalytics/static/js/'));
 
   gulp.src('./build/images/*')
-    .pipe(gulp.dest('../paratureanalyticsdashboard/static/images/'));
+    .pipe(gulp.dest('../paratureanalytics/static/images/'));
 
   gulp.src("./build/*.html")
     .pipe(htmlReplace({
       'css': 'css/all.min.css',
       'js': 'js/all.min.js'
     }))
-    .pipe(gulp.dest('../paratureanalyticsdashboard/templates/'));
+    .pipe(gulp.dest('../paratureanalytics/templates/'));
 });
 
 

@@ -2,7 +2,7 @@
 """
 
 
-from paratureanalyticsdashboard import app
+from paratureanalytics import app
 
 
 app.run(port=8000, threaded=True)
