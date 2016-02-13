@@ -183,7 +183,7 @@ td {
 
 .button {
   background-color: #eee;
-  background-image: linear-gradient(#fcfcfc, #eee);
+  background-image: linear-gradient(#fff, #fcfcfc);
   border: 1px solid #d5d5d5;
   cursor: pointer;
   display: inline-block;
@@ -196,7 +196,7 @@ td {
 
 .button:hover {
   background-color: #ddd;
-  background-image: linear-gradient(#eee, #ddd);
+  background-image: linear-gradient(#fcfcfc, #fafafa);
   border-color: #ccc;
 }
 
