@@ -61,9 +61,6 @@ target/
 # Virtual Environment
 venv/
 
-# Config files
-config.py
-
 # NPM Modules
 node_modules
 
