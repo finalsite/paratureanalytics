@@ -17,6 +17,7 @@ if (window.location.pathname === '/') {
       loadActionTypeList();
       loadCsrList();
       loadDateInputs();
+      $('#cover').hide();
     },
     error: function(error) {
       window.location.replace('/login');
