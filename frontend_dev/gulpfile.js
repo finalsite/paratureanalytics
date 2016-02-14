@@ -50,7 +50,9 @@ gulp.task('push-to-flask', function() {
     './build/css/score_utils.css',
     './build/css/header.css',
     './build/css/footer.css',
+    './build/css/spinner.css',
     './build/css/navigation.css',
+    './build/css/cover.css',
     './build/css/main.css',
     './build/css/login.css'
   ];
