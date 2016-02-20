@@ -32,4 +32,4 @@ When a client rates a ticket response as a '4 Star Ticket Rating' that's an acti
 | dateMin      | [date string yyyy/mm/dd]           |
 | dateMax      | [date string yyyy/mm/dd]           |
 | ticketNumber | [Parature 7-digit ticket number]   |
-| groupBy | 'day', 'month'   |
+| groupBy      | day<br> month<br>type<br> type<br> assignedTo<br> assignedFrom<br>type,assignedTo<br>day,type   |
