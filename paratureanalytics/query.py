@@ -156,9 +156,9 @@ class QueryBuilder(object):
 
         if group_by == 'type':
             group_document = { '$group': { '_id': '$actionType',  'count': { '$sum' : 1 } } }
-        elif group_by == 'assigned_to':
+        elif group_by == 'assignedTo':
             group_document = { '$group': { '_id': '$assignedTo',  'count': { '$sum' : 1 } } }
-        elif group_by == 'assigned_from':
+        elif group_by == 'assignedFrom':
             group_document = { '$group': { '_id': '$assignedFrom',  'count': { '$sum' : 1 } } }
         elif group_by == 'ticket':
             group_document = { '$group': { '_id': '$ticketNumber',  'count': { '$sum' : 1 } } }
