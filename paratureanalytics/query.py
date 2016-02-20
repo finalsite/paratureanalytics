@@ -38,18 +38,68 @@ class QueryBuilder(object):
     def _build_aggregate_query(self):
         """Return MongoDB query document for aggregate query"""
         agg_query = [ { '$sort' : { 'timestamp' : 1 } } ]
+        group_by = self.parameters.get('groupBy', None)
 
         match_document = self._build_match_document()
         if match_document:
             agg_query.append(match_document)
 
-        project_document = self._build_project_documet()
-        if project_document:
+        if group_by == 'type,assignedTo':
+            group_document = { "$group" : { "_id" : { "csr" : "$assignedTo", "type" : "$actionType" }, "count" : { "$sum": 1 } } }
+            project_document = {
+                "$project": {
+                    "assignedTo": "$_id.csr",
+                    "type": "$_id.type",
+                    "count" : 1,
+                    "_id": 0
+                }
+            }
+
+            agg_query.append(group_document)
+            agg_query.append(project_document)
+        elif group_by == 'day,type':
+            group_document = {
+                "$group" : {
+                    "_id" : { "month": { "$month": "$timestamp" }, "day": { "$dayOfMonth": "$timestamp" }, "year": { "$year": "$timestamp" }, "type": "$actionType" },
+                    "count" : { "$sum": 1 }
+                }
+            }
+            sort_document = {
+                "$sort" : {
+                    "_id.month": 1,
+                    "_id.day": 1,
+                    "_id.year": 1
+                }
+            }
+            project_document = {
+                "$project" : {
+                    "date" : {
+                        "$concat" : [
+                            { "$substr" : [ "$_id.month", 0, 2 ] },
+                            "-",
+                            { "$substr" : [ "$_id.day", 0, 2 ] },
+                            "-",
+                            { "$substr" : [ "$_id.year", 0, 4 ] }
+                        ]
+                    },
+                    "type" : "$_id.type",
+                    "count" : 1,
+                    "_id" : 0
+                }
+            }
+
+            agg_query.append(group_document)
+            agg_query.append(sort_document)
             agg_query.append(project_document)
 
-        group_document = self._build_group_document()
-        if group_document:
-            agg_query.append(group_document)
+        else:
+            project_document = self._build_project_documet()
+            if project_document:
+                agg_query.append(project_document)
+
+            group_document = self._build_group_document()
+            if group_document:
+                agg_query.append(group_document)
 
         return agg_query
 
