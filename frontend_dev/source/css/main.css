@@ -18,6 +18,11 @@ a.disabled {
   pointer-events: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 
 
 
@@ -27,7 +32,8 @@ a.disabled {
 \* -------------------------------- */
 
 .section__builder {
-  background: #fcfcfc;
+  background: #fafafa;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .section__results {
@@ -110,106 +116,6 @@ td {
 
 
 /* -------------------------------- *\
-    #FORMS
-\* -------------------------------- */
-
-.form {
-  margin: 10px 0;
-
-}
-
-.form__row > * {
-  vertical-align: top;
-}
-
-.form__row {
-  padding-bottom: 10px;
-}
-
-.form_section {
-  display: block;
-
-}
-
-.form__section.form__section--two-col {
-  display: inline-block;
-  width: 49%;
-}
-
-.form__section.form__section--three-col {
-  display: inline-block;
-  width: 32%;
-}
-
-.form__section.form__section--four-col {
-  display: inline-block;
-  width: 25%;
-}
-
-.form__section.form__section--four-col:last-child {
-  float: right;
-  width: 23%;
-}
-
-.form__label {
-  display: inline-block;
-  min-width: 100px;
-  width: 100%;
-}
-
-.input,
-.select {
-  background-color: #fff;
-  border: 1px solid #d5d5d5;
-  padding: 5px;
-  font-size: 16px;
-  line-height: 1;
-  border-radius: 0;
-  height: 34px;
-  width: 100%;
-  -webkit-appearance: none;
-}
-
-.select {
-  background: url('../images/circle-down.png') no-repeat calc(100% - 3px) transparent;
-  background-size: 18px 18px;
-  padding-right: 24px;
-  background-color: #fff;
-}
-
-.form__input {
-  width: 100%;
-}
-
-.button {
-  background-color: #eee;
-  background-image: linear-gradient(#fff, #fcfcfc);
-  border: 1px solid #d5d5d5;
-  cursor: pointer;
-  display: inline-block;
-  margin: 10px 0;
-  padding: 5px 15px;
-  transition: .25s;
-  vertical-align: middle;
-  white-space: nowrap;
-}
-
-.button:hover {
-  background-color: #ddd;
-  background-image: linear-gradient(#fcfcfc, #fafafa);
-  border-color: #ccc;
-}
-
-a.button {
-  text-decoration: none;
-  color: inherit;
-}
-
-
-
-
-
-/* -------------------------------- *\
     #TOOLBAR
 \* -------------------------------- */
 
@@ -218,31 +124,7 @@ a.button {
   height: 37px;
 }
 
-.results__export {
-  cursor: pointer;
-  margin-top: 2px;
-  padding: 5px;
-  position: absolute;
-  right: 4px;
-  top: 0;
-  z-index: 100;
-}
 
-.results__export > * {
-  vertical-align: top;
-}
-
-.export__icon {
-  height: 20px;
-  width: 20px;
-}
-
-.export__name {
-  display: inline-block;
-  font-size: 16px;
-  font-weight: normal;
-  margin: 0;
-}
 
 
 

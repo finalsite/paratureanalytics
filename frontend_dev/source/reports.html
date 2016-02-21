@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parature Analytics</title>
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+  <!-- build:css -->
+  <link href="css/normalize.css" rel="stylesheet">
+  <link href="css/score_required.css" rel="stylesheet">
+  <link href="css/score_grid.css" rel="stylesheet">
+  <link href="css/score_utils.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
+  <link href="css/footer.css" rel="stylesheet">
+  <link href="css/navigation.css" rel="stylesheet">
+  <link href="css/cover.css" rel="stylesheet">
+  <link href="css/button.css" rel="stylesheet">
+  <link href="css/icon.css" rel="stylesheet">
+  <link href="css/form.css" rel="stylesheet">
+  <link href="css/spinner.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
+<body>
+  <header class="header">
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-6">
+          <div class="logo">
+            <img class="logo__image" src="images/stack.png">
+            <h1 class="logo__title">Parature Analytics</h1>
+          </div>
+        </div>
+        <div class="grid__col-6">
+          <nav class="nav text--right">
+            <ul class="nav__bar">
+              <li id="sign__out" class="nav__element"><a href="#" class="nav__link">Sign out</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="section__builder">
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10">
+          <form id="report" class="form form--report" method="GET">
+            <div class="form__row">
+              <div class="form__col">
+                <label class="label" for="dateMin">Date from:</label>
+                <input class="input input--date" type="date" id="dateMin" name="dateMin" tabindex="1">
+              </div>
+              <div class="form__col">
+                <label class="label" for="dateMax">Date to:</label>
+                <input class="input input--date" type="date" id="dateMax" name="dateMax" tabindex="2">
+              </div>
+              <div class="form__col">
+                <input class="button" type="submit" value="Run Report" tabindex="7">
+              </div>
+          </div>
+          </form>
+        </div>
+        <div class="grid__col-1"></div>
+      </div>
+    </div>
+  </section>
+  <!-- <section class="">
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10">
+          <a class="button button--export" href="/api/v1/download">
+            <img class="icon__excel" src="images/file-excel.png">
+            Export
+          </a>
+        </div>
+        <div class="grid__col-1"></div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- <div id="cover" class="cover cover__loading">
+    <div class="cover__content">
+      <div class="logo">
+        <img class="logo__image" src="images/stack.png">
+        <h1 class="logo__title">Parature Analytics</h1>
+      </div>
+      <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
+    </div>
+  </div> -->
+  <!-- build:js -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/exceptions.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/loaders.js"></script>
+  <script src="js/logout.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/main.js"></script>
+  <!-- endbuild -->
+</body>
+</html>
