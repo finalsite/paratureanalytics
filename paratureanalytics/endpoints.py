@@ -3,6 +3,7 @@
 """
 
 
+from datetime import datetime, timedelta
 import random
 import string
 
@@ -34,7 +35,19 @@ def get_action_resource():
     qb = QueryBuilder(request.args)
     if qb.query_type == 'aggregate':
         query_cursor = db.action.aggregate(qb.get_query())
-        data = [elem for elem in query_cursor]
+        data = []
+        for elem in query_cursor:
+            if 'date' in elem:
+                dateMin = datetime.strptime(elem['date'], '%m-%d-%Y')
+                dateMax = dateMin + timedelta(days=1)
+
+                uriParams = '/api/v1/action?'
+                uriParams += '&dateMin=' + datetime.strftime(dateMin, '%Y-%m-%d')
+                uriParams += '&dateMax=' + datetime.strftime(dateMax, '%Y-%m-%d')
+                uriParams += '&actionType=' + elem['type'] + '&' + 'groupBy=type,assignedTo'
+
+                elem['drillDownUri'] = uriParams
+            data.append(elem)
     else:
         query_cursor = db.action.find(qb.get_query()).sort('timestamp', pymongo.DESCENDING)
         data = process_query_results(query_cursor, 'action')
