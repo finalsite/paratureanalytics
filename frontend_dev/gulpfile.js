@@ -105,5 +105,5 @@ gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], function
 
   gulp.watch('./source/css/*', ['styles', browserSync.reload]);
   gulp.watch('./source/js/*', ['scripts', browserSync.reload])
-  gulp.watch('./source/*.html', ['copy-html']);
+  gulp.watch('./source/*.html', ['copy-html', browserSync.reload]);
 });
