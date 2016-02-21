@@ -29,3 +29,32 @@
 .button--export > * {
   vertical-align: top;
 }
+
+.button--submit {
+  background-image: linear-gradient(to bottom, #1A74BA 0%, #186eb1 100%);
+  border: 1px solid #15609a;
+  color: #FFFFFF;
+  padding: 7px 0 10px;
+  transition: none;
+  width: 100%;
+}
+
+.button--submit:hover {
+  background-color: #1b79c2;
+  background-image: none;
+  border-color: #1768a8;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  color: #FFFFFF;
+}
+
+.button--submit[disabled] {
+  background: #aaa;
+  border-color: #aaa;
+  color: #eaeaea;
+}
+
+.button--submit[disabled]:hover {
+  background: #aaa;
+  border-color: #aaa;
+  color: #eaeaea;
+}

@@ -128,8 +128,6 @@ td {
 
 
 
-
-
 /* -------------------------------- *\
     #TABBED ELEMENT
 \* -------------------------------- */
@@ -248,4 +246,19 @@ td {
   padding: 75px 0;
   text-align: center;
   width: 300px;
+}
+
+
+
+
+
+/* -------------------------------- *\
+    #PAGES
+\* -------------------------------- */
+
+.page__login {
+  background: #F5F5F5;
+  height: 600px;
+  margin: 0 auto;
+  padding: 1px;
 }
