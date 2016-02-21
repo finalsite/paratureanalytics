@@ -13,9 +13,11 @@ var SummaryReport = function(parameters) {
   this.parameters = this._getQueryStrAsObj(parameters);
   this.queryString = this._parseParameters(this.parameters) + '&groupBy=day,type';
   this.endpoint = API_HOSTNAME + 'api/v1/action?';
+
   this.response = null;
   this.requestError = null;
-  this.headerTemplate = '<tr><th class="column">Date</th><th class="column">Action Type</th><th class="column">Total</th></tr>';
+
+  this.template = [];
 };
 
 SummaryReport.prototype = Object.create(Report.prototype);
@@ -55,10 +57,17 @@ SummaryReport.prototype.render = function() {
  */
 
 SummaryReport.prototype.onSuccess = function(response) {
-  console.log(response);
-  this.response = response;
-  var htmlTemplate = this.getResponseAsStrTemplate();
-  $('#results').empty().append(htmlTemplate);
+  var header = new SummaryReportHeader().render();
+  var description = new SummaryReportDescription(this.parameters).render();
+  var data = new SummaryReportData(response['results']).render();
+
+  var htmlTemplate = [
+    header,
+    description,
+    data
+  ];
+
+  $('#results').empty().append(htmlTemplate.join(''));
 }
 
 
@@ -86,25 +95,116 @@ SummaryReport.prototype.onError = function(response) {
  *
  */
 
-SummaryReport.prototype.getResponseAsStrTemplate = function() {
-  var rawData = this.response['results'];
+function SummaryReportHeader() {
+  this.template = '<h3>Summary Report</h3>';
+}
 
-  var htmlData = [];
-  htmlData.push(this.headerTemplate);
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+SummaryReportHeader.prototype.render = function() {
+  return this.template;
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function SummaryReportDescription(reportFields) {
+  if (!reportFields) {
+    throw new RootException('Missing argument. 1 expected, 0 given!');
+  }
+  this.template = this.load(reportFields);
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+SummaryReportDescription.prototype.render = function() {
+  return this.template;
+}
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+SummaryReportDescription.prototype.load = function(reportFields) {
+  var htmlTemplate = '<p>Date Range: ' + reportFields['dateMin'] + ' to ' + reportFields['dateMax'] + '</p>';
+
+  return htmlTemplate;
+}
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+function SummaryReportData(data) {
+  if (!data) {
+    throw new RootException('Missing argument. 1 expected, 0 given!');
+  }
+  this.template = this.load(data);
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+SummaryReportData.prototype.render = function() {
+  return this.template;
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+SummaryReportData.prototype.load = function(data) {
+  var headerTemplate = '<table id="results" class="report report--summary"><tr><th class="column">Date</th><th class="column">Action Type</th><th class="column">Total</th></tr>';
+  var htmlTemplate = [];
+  htmlTemplate.push(headerTemplate);
 
   var totalActions = 0;
-  rawData.forEach(function(elem) {
-    totalActions += elem.count;
-    var htmlElem = '<tr data-drill-down-uri="' + elem.drillDownUri + '">';
 
+  data.forEach(function(elem) {
+    totalActions += elem.count;
+
+    var htmlElem = '';
+    htmlElem += '<tr data-drill-down-uri="' + elem.drillDownUri + '">';
     htmlElem += '<td class="column">' + elem.date + '</td>';
-    htmlElem += '<td class="column">' + elem.type || elem.assignedTo + '</td>';
+    htmlElem += '<td class="column">' + elem.type + '</td>';
     htmlElem += '<td class="column">' + elem.count + '</td>';
     htmlElem += '</tr>';
 
-    htmlData.push(htmlElem);
+    htmlTemplate.push(htmlElem);
   });
-  htmlData.push('<tr><td class="column column--offset" colspan="2">Total: </td><td class="column">' + totalActions + '</td>')
-  var htmlTemplate = htmlData.join('');
-  return htmlTemplate;
-};
+
+  htmlTemplate.push('<tr><td class="column column--offset" colspan="2">Total: </td><td class="column">' + totalActions + '</td></tr></table>');
+  return htmlTemplate.join('');
+}

@@ -10,6 +10,9 @@
 
 }
 
+.report--summary .column {
+  cursor: pointer;
+}
 .report--summary .column:first-child {
   width: 150px;
 }
