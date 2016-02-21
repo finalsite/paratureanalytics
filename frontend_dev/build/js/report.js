@@ -6,7 +6,7 @@
  *
  */
 
-function ReportRequest(parameters) {
+function Report(parameters) {
   if (!parameters) {
     throw new RootException('Missing argument. 1 expected, 0 given!');
   }
@@ -23,7 +23,7 @@ function ReportRequest(parameters) {
  *
  */
 
-ReportRequest.prototype.headerTemplates = {
+Report.prototype.headerTemplates = {
   'standard': '<tr><th>Date</th><th>Ticket</th><th>Action</th><th>Assigned To</th><th>Assigned From</th></tr>',
   'aggregate': '<tr><th>Date</th><th>Total</th></tr>'
 }
@@ -36,7 +36,7 @@ ReportRequest.prototype.headerTemplates = {
  *
  */
 
-ReportRequest.prototype._parseParameters = function(parameters) {
+Report.prototype._parseParameters = function(parameters) {
   data = this._getQueryStrAsObj(parameters);
 
   if (data['groupBy'] === 'none') {
@@ -72,7 +72,7 @@ ReportRequest.prototype._parseParameters = function(parameters) {
  *
  */
 
-ReportRequest.prototype._getQueryStrAsObj = function(str) {
+Report.prototype._getQueryStrAsObj = function(str) {
   // Source: https://css-tricks.com/snippets/jquery/get-query-params-object/
   return str.replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0]
 }
@@ -84,8 +84,9 @@ ReportRequest.prototype._getQueryStrAsObj = function(str) {
  *
  */
 
-ReportRequest.prototype.render = function() {
+Report.prototype.render = function() {
   var uri = this.endpoint + this.parameters;
+  console.log(uri);
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
   $.ajax({
     url: uri,
@@ -107,7 +108,7 @@ ReportRequest.prototype.render = function() {
  *
  */
 
-ReportRequest.prototype.onSuccess = function(response) {
+Report.prototype.onSuccess = function(response) {
   this.response = response;
   var htmlTemplate = this.getResponseAsStrTemplate();
 
@@ -130,7 +131,7 @@ ReportRequest.prototype.onSuccess = function(response) {
  *
  */
 
-ReportRequest.prototype.onError = function(response) {
+Report.prototype.onError = function(response) {
   if (response.status === 403) {
     alert('Login session expired!');
     window.location.replace('/login');
@@ -147,7 +148,7 @@ ReportRequest.prototype.onError = function(response) {
  *
  */
 
-ReportRequest.prototype.getResponseAsStrTemplate = function() {
+Report.prototype.getResponseAsStrTemplate = function() {
   var rawData = this.response['results'];
   var htmlData = [];
 

@@ -1,5 +1,11 @@
 var lastRunReportParameters = '';
-
+loadDateInputs();
+/**
+ *
+ *
+ *
+ *
+ */
 
 if (window.location.pathname === '/') {
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
@@ -26,17 +32,50 @@ if (window.location.pathname === '/') {
 }
 
 
+/**
+ *
+ *
+ *
+ *
+ */
+
+$('#summary-report').on('submit', function(event) {
+  event.preventDefault();
+
+  var formDataAsQueryString = $(this).serialize();
+
+  var report = new SummaryReport(formDataAsQueryString);
+  report.render();
+
+  lastRunReportParameters = report.parameters;
+});
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
 $('#report').on('submit', function(event) {
   event.preventDefault();
 
   var formDataAsQueryString = $(this).serialize();
 
-  var request = new ReportRequest(formDataAsQueryString);
+  var request = new Report(formDataAsQueryString);
   request.render();
 
   lastRunReportParameters = request.parameters;
 });
 
+
+/**
+ *
+ *
+ *
+ *
+ */
 
 $('.tabs').on('click', '.tab__link', function() {
   $('.tab__panel--active').removeClass('tab__panel--active');
@@ -45,6 +84,13 @@ $('.tabs').on('click', '.tab__link', function() {
   $selectedTabPanel.addClass('tab__panel--active');
 });
 
+
+/**
+ *
+ *
+ *
+ *
+ */
 
 $('#sign__up').on('click', function(event) {
   event.preventDefault();

@@ -1,0 +1,24 @@
+/* -------------------------------- *\
+    #REPORT
+\* -------------------------------- */
+
+.report {
+  margin: 20px auto;
+}
+
+.report--summary {
+
+}
+
+.report--summary .column:first-child {
+  width: 150px;
+}
+.report--summary .column:nth-child(2) {
+  width: 200px;
+}
+.report--summary .column:nth-child(3) {
+  width: 200px;
+}
+.report--summary .column--offset {
+  text-align: right;
+}

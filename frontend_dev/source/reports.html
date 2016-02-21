@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +22,7 @@
   <link href="css/icon.css" rel="stylesheet">
   <link href="css/form.css" rel="stylesheet">
   <link href="css/spinner.css" rel="stylesheet">
+  <link href="css/report.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   <!-- endbuild -->
 </head>
@@ -48,8 +50,8 @@
     <div class="grid">
       <div class="grid__row">
         <div class="grid__col-1"></div>
-        <div class="grid__col-10">
-          <form id="report" class="form form--report" method="GET">
+        <div class="grid__col-9">
+          <form id="summary-report" class="form form--report" method="GET">
             <div class="form__row">
               <div class="form__col">
                 <label class="label" for="dateMin">Date from:</label>
@@ -60,44 +62,31 @@
                 <input class="input input--date" type="date" id="dateMax" name="dateMax" tabindex="2">
               </div>
               <div class="form__col">
-                <input class="button" type="submit" value="Run Report" tabindex="7">
+                <input class="button" type="submit" value="Run Report" tabindex="3">
               </div>
-          </div>
+            </div>
           </form>
         </div>
-        <div class="grid__col-1"></div>
+        <div class="grid__col-2">
+          <a class="button button--export" href="/api/v1/download">
+            <img class="icon__excel" src="images/file-excel.png"> Export
+          </a>
+        </div>
       </div>
     </div>
   </section>
-  <!-- <section class="">
+  <section>
     <div class="grid">
       <div class="grid__row">
-        <div class="grid__col-1"></div>
-        <div class="grid__col-10">
-          <a class="button button--export" href="/api/v1/download">
-            <img class="icon__excel" src="images/file-excel.png">
-            Export
-          </a>
+        <div class="grid__col-2"></div>
+        <div class="grid__col-8">
+          <table id="results" class="report report--summary">
+          </table>
         </div>
-        <div class="grid__col-1"></div>
+        <div class="grid__col-2"></div>
       </div>
     </div>
-  </section> -->
-
-  <!-- <div id="cover" class="cover cover__loading">
-    <div class="cover__content">
-      <div class="logo">
-        <img class="logo__image" src="images/stack.png">
-        <h1 class="logo__title">Parature Analytics</h1>
-      </div>
-      <div class="sk-folding-cube">
-        <div class="sk-cube1 sk-cube"></div>
-        <div class="sk-cube2 sk-cube"></div>
-        <div class="sk-cube4 sk-cube"></div>
-        <div class="sk-cube3 sk-cube"></div>
-      </div>
-    </div>
-  </div> -->
+  </section>
   <!-- build:js -->
   <script src="js/jquery.min.js"></script>
   <script src="js/config.js"></script>
@@ -106,6 +95,7 @@
   <script src="js/loaders.js"></script>
   <script src="js/logout.js"></script>
   <script src="js/report.js"></script>
+  <script src="js/summary.js"></script>
   <script src="js/export.js"></script>
   <script src="js/main.js"></script>
   <!-- endbuild -->
