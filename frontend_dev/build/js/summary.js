@@ -16,8 +16,6 @@ var SummaryReport = function(parameters) {
 
   this.response = null;
   this.requestError = null;
-
-  this.template = [];
 };
 
 SummaryReport.prototype = Object.create(Report.prototype);
