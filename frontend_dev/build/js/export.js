@@ -4,7 +4,7 @@
  *
  */
 
-$('.results__export.button').on('click', function(event) {
+$('.button--export').on('click', function(event) {
   event.preventDefault();
   if (lastRunReportParameters === '') {
     alert("Can't export a report that was never run!");
