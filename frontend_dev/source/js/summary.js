@@ -10,7 +10,8 @@ var SummaryReport = function(parameters) {
   if (!parameters) {
     throw new RootException('Missing argument. 1 expected, 0 given!');
   }
-  this.parameters = this._parseParameters(parameters) + '&groupBy=day,type';
+  this.parameters = this._getQueryStrAsObj(parameters);
+  this.queryString = this._parseParameters(this.parameters) + '&groupBy=day,type';
   this.endpoint = API_HOSTNAME + 'api/v1/action?';
   this.response = null;
   this.requestError = null;
@@ -19,6 +20,31 @@ var SummaryReport = function(parameters) {
 
 SummaryReport.prototype = Object.create(Report.prototype);
 SummaryReport.prototype.constructor = SummaryReport;
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+SummaryReport.prototype.render = function() {
+  var uri = this.endpoint + this.queryString;
+  var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
+
+  $.ajax({
+    url: uri,
+    dataType: 'json',
+    headers: {
+      'Authorization': authorizationHeaderValue
+    },
+    crossDomain: true,
+    success: this.onSuccess,
+    error: this.onError,
+    context: this
+  });
+}
 
 
 /**
