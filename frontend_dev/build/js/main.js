@@ -1,5 +1,7 @@
 var lastRunReportParameters = '';
 loadDateInputs();
+
+
 /**
  *
  *
@@ -48,6 +50,27 @@ $('#summary-report').on('submit', function(event) {
   report.render();
 
   lastRunReportParameters = report.parameters;
+});
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+$('#results').on('dblclick', 'tr', function(event) {
+  event.preventDefault();
+
+  var uri = $(this).attr('data-drill-down-uri');
+  var elementHasDrillDownUri = uri ? true : false;
+
+  if (elementHasDrillDownUri) {
+    var report = new DetailReport(uri);
+    report.render();
+    console.log(uri);
+  }
 });
 
 

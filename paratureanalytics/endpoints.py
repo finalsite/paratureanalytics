@@ -41,7 +41,7 @@ def get_action_resource():
                 dateMin = datetime.strptime(elem['date'], '%m-%d-%Y')
                 dateMax = dateMin + timedelta(days=1)
 
-                uriParams = '/api/v1/action?'
+                uriParams = 'api/v1/action?'
                 uriParams += '&dateMin=' + datetime.strftime(dateMin, '%Y-%m-%d')
                 uriParams += '&dateMax=' + datetime.strftime(dateMax, '%Y-%m-%d')
                 uriParams += '&actionType=' + elem['type'] + '&' + 'groupBy=type,assignedTo'

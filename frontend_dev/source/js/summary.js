@@ -3,7 +3,7 @@
  * SummaryReport - Aggregate reportt
  * @param {string} parameters Query string of form input name/values
  * @constructor
- * @extends {Sprite}
+ * @extends {Report}
  */
 
 var SummaryReport = function(parameters) {
@@ -69,7 +69,7 @@ SummaryReport.prototype.getResponseAsStrTemplate = function() {
   var totalActions = 0;
   rawData.forEach(function(elem) {
     totalActions += elem.count;
-    var htmlElem = '<tr>';
+    var htmlElem = '<tr data-drill-down-uri="' + elem.drillDownUri + '">';
 
     htmlElem += '<td class="column">' + elem.date + '</td>';
     htmlElem += '<td class="column">' + elem.type || elem.assignedTo + '</td>';
