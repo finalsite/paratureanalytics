@@ -25,3 +25,20 @@
 .report--summary .column--offset {
   text-align: right;
 }
+
+.report--detail {
+
+}
+
+.report--detail .column:first-child {
+  width: 200px;
+}
+.report--detail .column:nth-child(2) {
+  width: 200px;
+}
+.report--detail .column:nth-child(3) {
+  width: 200px;
+}
+.report--detail .column--offset {
+  text-align: right;
+}

@@ -69,7 +69,7 @@ $('#results').on('dblclick', 'tr', function(event) {
   if (elementHasDrillDownUri) {
     var report = new DetailReport(uri);
     report.render();
-    console.log(uri);
+    lastRunReportParameters = report.queryString;
   }
 });
 
