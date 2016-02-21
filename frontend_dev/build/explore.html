@@ -17,7 +17,12 @@
   <link href="css/footer.css" rel="stylesheet">
   <link href="css/navigation.css" rel="stylesheet">
   <link href="css/cover.css" rel="stylesheet">
+  <link href="css/button.css" rel="stylesheet">
+  <link href="css/icon.css" rel="stylesheet">
+  <link href="css/form.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
   <link href="css/spinner.css" rel="stylesheet">
+  <link href="css/report.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   <!-- endbuild -->
 </head>
@@ -46,18 +51,18 @@
       <div class="grid__row">
         <div class="grid__col-1"></div>
         <div class="grid__col-10">
-          <form id="report" class="form" method="get">
+          <form id="report" class="form form--explore" method="GET">
             <div class="form__row">
               <div class="form__section form__section--four-col">
-                <label class="form__label" for="dateMin">Date from:</label>
+                <label class="label" for="dateMin">Date from:</label>
                 <input class="input" type="date" id="dateMin" name="dateMin" tabindex="1">
               </div>
               <div class="form__section form__section--four-col">
-                <label class="form__label" for="dateMax">Date to:</label>
+                <label class="label" for="dateMax">Date to:</label>
                 <input class="input" type="date" id="dateMax" name="dateMax" tabindex="2">
               </div>
               <div class="form__section form__section--four-col">
-                <label class="form__label" for="groupBy">Group by:</label>
+                <label class="label" for="groupBy">Group by:</label>
                 <select class="select" name="groupBy" id="groupBy" tabindex="3">
                   <option value="none">None</option>
                   <option value="month">Month</option>
@@ -70,19 +75,19 @@
             </div>
             <div class="form__row">
               <div class="form__section form__section--four-col">
-                <label class="form__label" for="actionType">Action Type:</label>
+                <label class="label" for="actionType">Action Type:</label>
                 <select class="select" name="actionType" id="actionType" tabindex="4">
                   <option value="all">Loading..</option>
                 </select>
               </div>
               <div class="form__section form__section--four-col">
-                <label class="form__label" for="assignedTo">Assigned To:</label>
+                <label class="label" for="assignedTo">Assigned To:</label>
                 <select class="select" name="assignedTo" id="assignedTo" tabindex="5">
                   <option value="all">Loading..</option>
                 </select>
               </div>
               <div class="form__section form__section--four-col">
-                <label class="form__label" for="assignedFrom">Assigned From:</label>
+                <label class="label" for="assignedFrom">Assigned From:</label>
                 <select class="select" name="assignedFrom" id="assignedFrom" tabindex="6">
                   <option value="all">Loading..</option>
                 </select>
@@ -100,9 +105,9 @@
       <div class="grid__row">
         <div class="grid__col-1"></div>
         <div class="grid__col-10 results__nav">
-          <a class="results__export button" href="/api/v1/download">
-            <img class="export__icon" src="images/file-excel.png">
-            <h5 class="export__name">Export</h5>
+          <a class="button button--export" href="/api/v1/download">
+            <img class="icon icon__excel" src="images/file-excel.png">
+            Export
           </a>
         </div>
         <div class="grid__col-1"></div>
@@ -112,41 +117,11 @@
   <section>
     <div class="grid">
       <div class="grid__row">
-        <div class="grid__col-1"></div>
-        <div class="grid__col-10">
-          <div class="tabs">
-            <div class="tab__panel tab__panel--active">
-              <div class="tab__link">
-                <img class="tab__icon tab__icon--table" src="images/table2.png">
-                <h5 class="tab__name">Data</h5>
-              </div>
-              <div class="tab__content">
-                <div class="placeholder placeholder__data">
-                  <div class="placeholder__content placeholder__content--empty">
-                    <h3>Run a report!</h3>
-                    <div id="total"></div>
-                    <table id="headers"></table>
-                    <table id="results"></table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab__panel">
-              <div class="tab__link">
-                <img class="tab__icon tab__icon--stats-bar" src="images/stats-bars.png">
-                <h5 class="tab__name">Graphs</h5>
-              </div>
-              <div class="tab__content">
-                <div class="placeholder">
-                  <div class="placeholder__content placeholder__content--empty">
-                    <h3>Coming soon!</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="grid__col-2"></div>
+        <div class="grid__col-8" id="results">
+
         </div>
-        <div class="grid__col-1"></div>
+        <div class="grid__col-2"></div>
       </div>
     </div>
   </section>
