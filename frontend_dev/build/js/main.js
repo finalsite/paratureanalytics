@@ -9,7 +9,7 @@ loadDateInputs();
  *
  */
 
-if (window.location.pathname === '/') {
+if (window.location.pathname.slice(0, 6) !== '/login') {
   var authorizationHeaderValue = 'Basic ' + b64EncodeUnicode(sessionStorage.accessToken + ':');
 
   $.ajax({
