@@ -49,7 +49,7 @@ $('#summary-report').on('submit', function(event) {
   var report = new SummaryReport(formDataAsQueryString);
   report.render();
 
-  lastRunReportParameters = report.parameters;
+  lastRunReportParameters = report.queryString;
 });
 
 
