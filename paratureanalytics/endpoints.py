@@ -18,7 +18,7 @@ from paratureanalytics import app
 from paratureanalytics.config import MONGO_URI, MONGO_DB_NAME, UPLOAD_FOLDER
 from paratureanalytics.models import User, AuthToken
 from paratureanalytics.query import QueryBuilder
-from paratureanalytics.utils import process_query_results, process_document, make_excel_file
+from paratureanalytics.utils import process_query_results, process_document, make_excel_file, create_user
 
 
 auth = HTTPBasicAuth()
@@ -165,6 +165,14 @@ def create_auth_token():
     token = g.user.generate_auth_token()
 
     return make_api_response(json_util.dumps({'token': token.decode('ascii')}))
+
+
+@app.route('/setup', methods=['GET'])
+def run_setup():
+    create_user('member', 'badpassword')
+    create_user('admin', 'support2016')
+
+    return jsonify({'status': 'success', 'message': 'Setup complete!'})
 
 
 @auth.verify_password

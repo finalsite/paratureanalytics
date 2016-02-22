@@ -77,6 +77,8 @@ def make_excel_file(filename, data):
 def create_user(username, password):
     """Create user and add to database"""
     db = pymongo.MongoClient(MONGO_URI)[MONGO_DB_NAME]
-    user = User(username, password)
 
-    user_id = db.user.insert_one(user.serialize).inserted_id
+    query = db.user.find({'username': username})
+    if not query.count():
+        user = User(username, password)
+        user_id = db.user.insert_one(user.serialize).inserted_id
