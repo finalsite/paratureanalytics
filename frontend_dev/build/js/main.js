@@ -81,15 +81,15 @@ $('#results').on('dblclick', 'tr', function(event) {
  *
  */
 
-$('#report').on('submit', function(event) {
+$('#explore-report').on('submit', function(event) {
   event.preventDefault();
 
   var formDataAsQueryString = $(this).serialize();
 
-  var request = new Report(formDataAsQueryString);
-  request.render();
+  var report = new ExploreReport(formDataAsQueryString);
+  report.render();
 
-  lastRunReportParameters = request.parameters;
+  lastRunReportParameters = report.queryString;
 });
 
 

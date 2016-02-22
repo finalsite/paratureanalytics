@@ -42,3 +42,14 @@
 .report--detail .column--offset {
   text-align: right;
 }
+
+.report--explore {
+
+}
+
+.report--explore .column {
+  width: 300px;
+}
+.report--explore .column--offset {
+  text-align: right;
+}

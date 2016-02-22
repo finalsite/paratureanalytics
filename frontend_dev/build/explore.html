@@ -39,6 +39,8 @@
         <div class="grid__col-6">
           <nav class="nav text--right">
             <ul class="nav__bar">
+              <li class="nav__element"><a href="#" class="nav__link">Reports</a></li>
+              <li class="nav__element"><a href="#" class="nav__link">Explore</a></li>
               <li id="sign__out" class="nav__element"><a href="#" class="nav__link">Sign out</a></li>
             </ul>
           </nav>
@@ -51,7 +53,7 @@
       <div class="grid__row">
         <div class="grid__col-1"></div>
         <div class="grid__col-10">
-          <form id="report" class="form form--explore" method="GET">
+          <form id="explore-report" class="form form--explore" method="GET">
             <div class="form__row">
               <div class="form__section form__section--four-col">
                 <label class="label" for="dateMin">Date from:</label>
@@ -96,35 +98,26 @@
             </div>
           </form>
         </div>
-        <div class="grid__col-1"></div>
-      </div>
-    </div>
-  </section>
-  <section class="section__results">
-    <div class="grid">
-      <div class="grid__row">
-        <div class="grid__col-1"></div>
-        <div class="grid__col-10 results__nav">
+        <div class="grid__col-1">
           <a class="button button--export" href="/api/v1/download">
             <img class="icon icon__excel" src="images/file-excel.png">
             Export
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+  <main>
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10" id="results">
+
+        </div>
         <div class="grid__col-1"></div>
       </div>
     </div>
-  </section>
-  <section>
-    <div class="grid">
-      <div class="grid__row">
-        <div class="grid__col-2"></div>
-        <div class="grid__col-8" id="results">
-
-        </div>
-        <div class="grid__col-2"></div>
-      </div>
-    </div>
-  </section>
+  </main>
   <div id="cover" class="cover cover__loading">
     <div class="cover__content">
       <div class="logo">
@@ -147,6 +140,7 @@
   <script src="js/loaders.js"></script>
   <script src="js/logout.js"></script>
   <script src="js/report.js"></script>
+  <script src="js/explore.js"></script>
   <script src="js/export.js"></script>
   <script src="js/main.js"></script>
   <!-- endbuild -->
