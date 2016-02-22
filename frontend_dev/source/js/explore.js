@@ -185,7 +185,7 @@ ExploreReportData.prototype.render = function() {
 
 ExploreReportData.prototype.load = function(data) {
   var htmlTemplate = [];
-  console.log(data);
+
   var headerTemplate = '<table id="results" class="report report--explore"><tr><th class="column">Date</th><th class="column">Ticket Number</th><th class="column">Action Type</th><th>Team Member</th><th>Assigned From</th></tr>';
   htmlTemplate.push(headerTemplate);
 
