@@ -36,14 +36,6 @@ a {
   border-bottom: 1px solid #eaeaea;
 }
 
-.section__builder .button {
-  margin-top: 20px;
-}
-
-.section__builder .button--export {
-    margin-top: 0;
-}
-
 .section__results {
   background: #fafafa;
   border-top: 1px solid #eaeaea;
@@ -269,4 +261,16 @@ td {
   height: 600px;
   margin: 0 auto;
   padding: 1px;
+}
+
+.page__dashboard {
+
+}
+
+.page__reports {
+
+}
+
+.page__explore .button--export {
+    margin-top: 0;
 }
