@@ -95,7 +95,7 @@ DetailReport.prototype.onError = function(response) {
  */
 
 function DetailReportHeader() {
-  this.template = '<h3>Detail Report</h3>';
+  this.template = '<h3 class="report__title">Detail Report</h3><div class="button button--back">Go back</div>';
 }
 
 

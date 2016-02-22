@@ -58,3 +58,8 @@
   border-color: #aaa;
   color: #eaeaea;
 }
+
+.button--back {
+  display: inline-block;
+  margin: 0 20px;
+}

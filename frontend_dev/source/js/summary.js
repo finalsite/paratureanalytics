@@ -55,9 +55,22 @@ SummaryReport.prototype.render = function() {
  */
 
 SummaryReport.prototype.onSuccess = function(response) {
+  this.response = response;
+  this.mount();
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+SummaryReport.prototype.mount = function() {
   var header = new SummaryReportHeader().render();
   var description = new SummaryReportDescription(this.parameters).render();
-  var data = new SummaryReportData(response['results']).render();
+  var data = new SummaryReportData(this.response['results']).render();
 
   var htmlTemplate = [
     header,

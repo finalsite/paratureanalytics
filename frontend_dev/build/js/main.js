@@ -1,4 +1,6 @@
 var lastRunReportParameters = '';
+var LAST_RUN_REPORT = null;
+
 loadDateInputs();
 
 
@@ -50,6 +52,7 @@ $('#summary-report').on('submit', function(event) {
   report.render();
 
   lastRunReportParameters = report.queryString;
+  LAST_RUN_REPORT = report;
 });
 
 
@@ -100,6 +103,21 @@ $('#explore-report').on('submit', function(event) {
  *
  */
 
+$('#results').on('click', '.button--back', function(event) {
+  event.preventDefault();
+
+  $('#results').empty();
+  LAST_RUN_REPORT.mount();
+});
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
 $('.tabs').on('click', '.tab__link', function() {
   $('.tab__panel--active').removeClass('tab__panel--active');
 
@@ -117,5 +135,5 @@ $('.tabs').on('click', '.tab__link', function() {
 
 $('#sign__up').on('click', function(event) {
   event.preventDefault();
-  alert('#alphaproblems -> Feature not yet available!');
+  alert('#betaproblems -> Feature not yet available!');
 })

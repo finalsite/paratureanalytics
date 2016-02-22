@@ -53,3 +53,8 @@
 .report--explore .column--offset {
   text-align: right;
 }
+
+
+.report__title {
+  display: inline-block;
+}
