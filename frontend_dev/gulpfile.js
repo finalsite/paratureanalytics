@@ -50,11 +50,14 @@ gulp.task('push-to-flask', function() {
     './build/css/score_utils.css',
     './build/css/header.css',
     './build/css/footer.css',
-    './build/css/spinner.css',
     './build/css/navigation.css',
     './build/css/cover.css',
-    './build/css/main.css',
-    './build/css/login.css'
+    './build/css/button.css',
+    './build/css/icon.css',
+    './build/css/form.css',
+    './build/css/spinner.css',
+    './build/css/report.css',
+    './build/css/main.css'
   ];
 
   gulp.src(cssFiles)
@@ -67,10 +70,13 @@ gulp.task('push-to-flask', function() {
     './build/js/config.js',
     './build/js/exceptions.js',
     './build/js/utils.js',
+    './build/js/loaders.js',
     './build/js/login.js',
     './build/js/logout.js',
-    './build/js/loaders.js',
     './build/js/report.js',
+    './build/js/summary.js',
+    './build/js/detail.js',
+    './build/js/explore.js',
     './build/js/export.js',
     './build/js/main.js'
   ];
