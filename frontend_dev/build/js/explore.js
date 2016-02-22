@@ -55,9 +55,26 @@ ExploreReport.prototype.render = function() {
  */
 
 ExploreReport.prototype.onSuccess = function(response) {
+  this.response = response;
+  this.mount();
+}
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+ExploreReport.prototype.mount = function() {
   var header = new ExploreReportHeader().render();
   var description = new ExploreReportDescription(this.parameters).render();
-  var data = new ExploreReportData(response['results']).render();
+  if (this.response.type === 'standard') {
+      var data = new ExploreReportStandardData(this.response['results']).render();
+  } else if (this.response.type === 'aggregate') {
+      var data = new ExploreReportAggregateData(this.response['results']).render();
+  }
+
 
   var htmlTemplate = [
     header,
@@ -66,9 +83,7 @@ ExploreReport.prototype.onSuccess = function(response) {
   ];
 
   $('#results').empty().append(htmlTemplate.join(''));
-}
-
-
+};
 /**
  *
  *
@@ -156,7 +171,7 @@ ExploreReportDescription.prototype.load = function(reportFields) {
  *
  */
 
-function ExploreReportData(data) {
+function ExploreReportStandardData(data) {
   if (!data) {
     throw new RootException('Missing argument. 1 expected, 0 given!');
   }
@@ -171,7 +186,7 @@ function ExploreReportData(data) {
  *
  */
 
-ExploreReportData.prototype.render = function() {
+ExploreReportStandardData.prototype.render = function() {
   return this.template;
 }
 
@@ -183,30 +198,29 @@ ExploreReportData.prototype.render = function() {
  *
  */
 
-ExploreReportData.prototype.load = function(data) {
+ExploreReportStandardData.prototype.load = function(data) {
   var htmlTemplate = [];
 
   var headerTemplate = '<table id="results" class="report report--explore"><tr><th class="column">Date</th><th class="column">Ticket Number</th><th class="column">Action Type</th><th>Team Member</th><th>Assigned From</th></tr>';
   htmlTemplate.push(headerTemplate);
 
+  var totalActions = 0;
+
   data.forEach(function(elem) {
+    totalActions += 1;
+
     var htmlElem = '<tr>';
-    if (elem.ticketNumber) {
-      htmlElem += '<td>' + elem.timestamp.toLocaleString().slice(0, 10) + '</td>';
-      htmlElem += '<td>' + elem.ticketNumber + '</td>';
-      htmlElem += '<td>' + elem.actionType + '</td>';
-      htmlElem += '<td>' + elem.assignedTo + '</td>';
-      htmlElem += '<td>' + (elem.assignedFrom || '') + '</td>';
-    } else {
-      htmlElem += '<td>' + elem._id + '</td>';
-      htmlElem += '<td>' + elem.count + '</td>';
-    }
+    htmlElem += '<td>' + elem.timestamp.toLocaleString().slice(0, 10) + '</td>';
+    htmlElem += '<td>' + elem.ticketNumber + '</td>';
+    htmlElem += '<td>' + elem.actionType + '</td>';
+    htmlElem += '<td>' + elem.assignedTo + '</td>';
+    htmlElem += '<td>' + (elem.assignedFrom || '') + '</td>';
     htmlElem += '</tr>';
 
     htmlTemplate.push(htmlElem);
   });
 
-  htmlTemplate.push('<tr><td class="column column--offset" colspan="4">Total: </td><td class="column">' + 'Next release?' + '</td></tr></table>');
+  htmlTemplate.push('<tr><td class="column column--offset" colspan="4">Total: </td><td class="column">' + totalActions + '</td></tr></table>');
   return htmlTemplate.join('');
 }
 
@@ -218,7 +232,52 @@ ExploreReportData.prototype.load = function(data) {
  *
  */
 
-ExploreReport.prototype.headerTemplates = {
-  'standard': '<tr><th>Date</th><th>Ticket</th><th>Action</th><th>Assigned To</th><th>Assigned From</th></tr>',
-  'aggregate': '<tr><th>Date</th><th>Total</th></tr>'
+function ExploreReportAggregateData(data) {
+  if (!data) {
+    throw new RootException('Missing argument. 1 expected, 0 given!');
+  }
+  this.template = this.load(data);
 }
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+ExploreReportAggregateData.prototype.render = function() {
+  return this.template;
+}
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+ExploreReportAggregateData.prototype.load = function(data) {
+  var htmlTemplate = [];
+
+  var headerTemplate = '<table id="results" class="report report--explore"><tr><th class="column">Grouping</th><th>Count</th></tr>';
+  htmlTemplate.push(headerTemplate);
+
+  var totalActions = 0;
+
+  data.forEach(function(elem) {
+    totalActions += elem.count;
+
+    var htmlElem = '<tr>';
+    htmlElem += '<td>' + elem._id + '</td>';
+    htmlElem += '<td>' + elem.count + '</td>';
+    htmlElem += '</tr>';
+
+    htmlTemplate.push(htmlElem);
+  });
+
+  htmlTemplate.push('<tr><td class="column column--offset" colspan="1">Total: </td><td class="column">' + totalActions + '</td></tr></table>');
+  return htmlTemplate.join('');
+};
