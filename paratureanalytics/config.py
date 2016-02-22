@@ -1,5 +1,5 @@
 # General Flask app settings
-DEBUG = False
+DEBUG = True
 SECRET_KEY = 'Secret'
 UPLOAD_FOLDER = '/Users/joelcolucci/Code/paratureanalyticsapi/paratureanalyticsapi/tempfiles/'
 

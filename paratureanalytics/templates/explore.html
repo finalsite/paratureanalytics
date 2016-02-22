@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parature Analytics</title>
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/all.min.css">
+</head>
+<body class="page__explore">
+  <header class="header">
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-6">
+          <div class="logo">
+            <img class="logo__image" src="images/stack.png">
+            <h1 class="logo__title">Parature Analytics</h1>
+          </div>
+        </div>
+        <div class="grid__col-6">
+          <nav class="nav text--right">
+            <ul class="nav__bar">
+              <li class="nav__element"><a href="/reports" class="nav__link">Reports</a></li>
+              <li class="nav__element"><a href="/explore" class="nav__link">Explore</a></li>
+              <li id="sign__out" class="nav__element"><a href="#" class="nav__link">Sign out</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="section__builder">
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10">
+          <form id="explore-report" class="form form--explore" method="GET">
+            <div class="form__row">
+              <div class="form__section form__section--four-col">
+                <label class="label" for="dateMin">Date from:</label>
+                <input class="input" type="date" id="dateMin" name="dateMin" tabindex="1">
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="label" for="dateMax">Date to:</label>
+                <input class="input" type="date" id="dateMax" name="dateMax" tabindex="2">
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="label" for="groupBy">Group by:</label>
+                <select class="select" name="groupBy" id="groupBy" tabindex="3">
+                  <option value="none">None</option>
+                  <option value="month">Month</option>
+                  <option value="day">Day</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col text--right">
+                <input class="button" type="submit" value="Run Report" tabindex="7">
+                <a class="button button--export" href="/api/v1/download">
+                  <img class="icon icon__excel" src="images/file-excel.png">
+                  Export
+                </a>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__section form__section--four-col">
+                <label class="label" for="actionType">Action Type:</label>
+                <select class="select" name="actionType" id="actionType" tabindex="4">
+                  <option value="all">Loading..</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="label" for="assignedTo">Assigned To:</label>
+                <select class="select" name="assignedTo" id="assignedTo" tabindex="5">
+                  <option value="all">Loading..</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col">
+                <label class="label" for="assignedFrom">Assigned From:</label>
+                <select class="select" name="assignedFrom" id="assignedFrom" tabindex="6">
+                  <option value="all">Loading..</option>
+                </select>
+              </div>
+              <div class="form__section form__section--four-col"></div>
+            </div>
+          </form>
+        </div>
+        <div class="grid__col-1"></div>
+      </div>
+    </div>
+  </section>
+  <main>
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-1"></div>
+        <div class="grid__col-10" id="results">
+
+        </div>
+        <div class="grid__col-1"></div>
+      </div>
+    </div>
+  </main>
+  <div id="cover" class="cover cover__loading">
+    <div class="cover__content">
+      <div class="logo">
+        <img class="logo__image" src="images/stack.png">
+        <h1 class="logo__title">Parature Analytics</h1>
+      </div>
+      <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/all.min.js"></script>
+</body>
+</html>

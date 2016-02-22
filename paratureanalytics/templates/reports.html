@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,7 @@
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/all.min.css">
 </head>
-<body class="page__dashboard">
+<body class="page__reports">
   <header class="header">
     <div class="grid">
       <div class="grid__row">
@@ -32,31 +33,46 @@
       </div>
     </div>
   </header>
-
-  <main>
+  <section class="section__builder">
     <div class="grid">
       <div class="grid__row">
-        <div class="grid__col-12 text--center">
-          <h3>Dashboard coming soon!</h3>
+        <div class="grid__col-1"></div>
+        <div class="grid__col-9">
+          <form id="summary-report" class="form form--report" method="GET">
+            <div class="form__row">
+              <div class="form__col">
+                <label class="label" for="dateMin">Date from:</label>
+                <input class="input input--date" type="date" id="dateMin" name="dateMin" tabindex="1">
+              </div>
+              <div class="form__col">
+                <label class="label" for="dateMax">Date to:</label>
+                <input class="input input--date" type="date" id="dateMax" name="dateMax" tabindex="2">
+              </div>
+              <div class="form__col">
+                <input class="button" type="submit" value="Run Report" tabindex="3">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="grid__col-2">
+          <a class="button button--export" href="/api/v1/download">
+            <img class="icon__excel" src="images/file-excel.png"> Export
+          </a>
         </div>
       </div>
     </div>
-  </main>
+  </section>
+  <section>
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__col-2"></div>
+        <div class="grid__col-8" id="results">
 
-  <div id="cover" class="cover cover__loading">
-    <div class="cover__content">
-      <div class="logo">
-        <img class="logo__image" src="images/stack.png">
-        <h1 class="logo__title">Parature Analytics</h1>
-      </div>
-      <div class="sk-folding-cube">
-        <div class="sk-cube1 sk-cube"></div>
-        <div class="sk-cube2 sk-cube"></div>
-        <div class="sk-cube4 sk-cube"></div>
-        <div class="sk-cube3 sk-cube"></div>
+        </div>
+        <div class="grid__col-2"></div>
       </div>
     </div>
-  </div>
+  </section>
   <script src="js/all.min.js"></script>
 </body>
 </html>
