@@ -42,7 +42,11 @@ SummaryReport.prototype.render = function() {
     crossDomain: true,
     success: this.onSuccess,
     error: this.onError,
-    context: this
+    context: this,
+    complete: function(xhr, status) {
+      // Re-enable login button
+      $('#summary-report .button[type="submit"]').attr('disabled', false);
+    }
   });
 }
 
