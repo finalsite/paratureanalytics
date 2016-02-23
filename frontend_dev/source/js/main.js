@@ -45,6 +45,7 @@ if (window.location.pathname.slice(0, 6) !== '/login') {
 
 $('#summary-report').on('submit', function(event) {
   event.preventDefault();
+  $('#summary-report .button[type="submit"]').attr('disabled', true);
 
   var formDataAsQueryString = $(this).serialize();
 
@@ -86,6 +87,7 @@ $('#results').on('dblclick', 'tr', function(event) {
 
 $('#explore-report').on('submit', function(event) {
   event.preventDefault();
+  $('#explore-report .button[type="submit"]').attr('disabled', true);
 
   var formDataAsQueryString = $(this).serialize();
 

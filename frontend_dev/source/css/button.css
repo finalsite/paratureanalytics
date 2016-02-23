@@ -21,6 +21,15 @@
   border-color: #ccc;
 }
 
+.button[disabled] {
+
+}
+
+.button[disabled]:hover {
+  background: #eee;
+  cursor: not-allowed;
+}
+
 .button--export {
   margin-top: 30px;
   padding: 5px;
